@@ -13,6 +13,11 @@
 		0830778E210191320005DEF8 /* SoundCloud.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0830778C210191320005DEF8 /* SoundCloud.xcdatamodeld */; };
 		08307790210191320005DEF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0830778F210191320005DEF8 /* Assets.xcassets */; };
 		08307793210191320005DEF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08307791210191320005DEF8 /* LaunchScreen.storyboard */; };
+		083077A02101DA470005DEF8 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0830779E2101DA470005DEF8 /* HomeCollectionViewCell.swift */; };
+		083077A12101DA470005DEF8 /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0830779F2101DA470005DEF8 /* HomeCollectionViewCell.xib */; };
+		083077A32101DBB90005DEF8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083077A22101DBB90005DEF8 /* HomeViewController.swift */; };
+		083077A62101DC4D0005DEF8 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083077A42101DC4D0005DEF8 /* HomeTableViewCell.swift */; };
+		083077A72101DC4D0005DEF8 /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 083077A52101DC4D0005DEF8 /* HomeTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		0830778F210191320005DEF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		08307792210191320005DEF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		08307794210191320005DEF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0830779E2101DA470005DEF8 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		0830779F2101DA470005DEF8 /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
+		083077A22101DBB90005DEF8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		083077A42101DC4D0005DEF8 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		083077A52101DC4D0005DEF8 /* HomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +66,7 @@
 		08307784210191320005DEF8 /* SoundCloud */ = {
 			isa = PBXGroup;
 			children = (
+				0830779A2101D9C50005DEF8 /* Home */,
 				08307785210191320005DEF8 /* AppDelegate.swift */,
 				08307787210191320005DEF8 /* ViewController.swift */,
 				08307789210191320005DEF8 /* Main.storyboard */,
@@ -65,6 +76,42 @@
 				0830778C210191320005DEF8 /* SoundCloud.xcdatamodeld */,
 			);
 			path = SoundCloud;
+			sourceTree = "<group>";
+		};
+		0830779A2101D9C50005DEF8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				0830779D2101DA0A0005DEF8 /* Controller */,
+				0830779C2101DA030005DEF8 /* View */,
+				0830779B2101D9FA0005DEF8 /* Modal */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		0830779B2101D9FA0005DEF8 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modal;
+			sourceTree = "<group>";
+		};
+		0830779C2101DA030005DEF8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0830779E2101DA470005DEF8 /* HomeCollectionViewCell.swift */,
+				0830779F2101DA470005DEF8 /* HomeCollectionViewCell.xib */,
+				083077A42101DC4D0005DEF8 /* HomeTableViewCell.swift */,
+				083077A52101DC4D0005DEF8 /* HomeTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0830779D2101DA0A0005DEF8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				083077A22101DBB90005DEF8 /* HomeViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +174,8 @@
 			files = (
 				08307793210191320005DEF8 /* LaunchScreen.storyboard in Resources */,
 				08307790210191320005DEF8 /* Assets.xcassets in Resources */,
+				083077A12101DA470005DEF8 /* HomeCollectionViewCell.xib in Resources */,
+				083077A72101DC4D0005DEF8 /* HomeTableViewCell.xib in Resources */,
 				0830778B210191320005DEF8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,8 +187,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				083077A62101DC4D0005DEF8 /* HomeTableViewCell.swift in Sources */,
+				083077A32101DBB90005DEF8 /* HomeViewController.swift in Sources */,
 				08307788210191320005DEF8 /* ViewController.swift in Sources */,
 				0830778E210191320005DEF8 /* SoundCloud.xcdatamodeld in Sources */,
+				083077A02101DA470005DEF8 /* HomeCollectionViewCell.swift in Sources */,
 				08307786210191320005DEF8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
