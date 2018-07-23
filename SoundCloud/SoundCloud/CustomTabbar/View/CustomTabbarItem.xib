@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomTabbarItem" customModule="SoundCloud" customModuleProvider="target">
+            <connections>
+                <outlet property="imvTabbarIcon" destination="haD-fE-kIw" id="IRf-Fj-5vT"/>
+                <outlet property="viewHighlight" destination="Z2M-8i-V7U" id="XUe-JP-StV"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="E1d-Ov-l9d">
+            <rect key="frame" x="0.0" y="0.0" width="236" height="149"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z2M-8i-V7U">
+                    <rect key="frame" x="0.0" y="146" width="236" height="3"/>
+                    <color key="backgroundColor" red="1" green="0.72941176470000002" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="3" id="HWs-fY-Ani"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="haD-fE-kIw">
+                    <rect key="frame" x="68.5" y="25" width="99" height="99"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="haD-fE-kIw" secondAttribute="height" multiplier="1:1" id="X8G-QG-jfr"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jif-7s-sok">
+                    <rect key="frame" x="5" y="5" width="226" height="136"/>
+                    <connections>
+                        <action selector="TabbarItemClicked:" destination="-1" eventType="touchUpInside" id="CFD-2S-wJb"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="jif-7s-sok" firstAttribute="top" secondItem="kcU-V4-bqu" secondAttribute="top" constant="5" id="10f-aN-7pg"/>
+                <constraint firstItem="kcU-V4-bqu" firstAttribute="trailing" secondItem="Z2M-8i-V7U" secondAttribute="trailing" id="44S-k5-4ey"/>
+                <constraint firstItem="haD-fE-kIw" firstAttribute="centerY" secondItem="kcU-V4-bqu" secondAttribute="centerY" id="61x-PV-Gjk"/>
+                <constraint firstItem="jif-7s-sok" firstAttribute="leading" secondItem="kcU-V4-bqu" secondAttribute="leading" constant="5" id="FyP-Ne-bE8"/>
+                <constraint firstItem="Z2M-8i-V7U" firstAttribute="leading" secondItem="kcU-V4-bqu" secondAttribute="leading" id="Gdp-aC-C7Z"/>
+                <constraint firstItem="kcU-V4-bqu" firstAttribute="trailing" secondItem="jif-7s-sok" secondAttribute="trailing" constant="5" id="XKL-V9-cLW"/>
+                <constraint firstItem="haD-fE-kIw" firstAttribute="centerX" secondItem="kcU-V4-bqu" secondAttribute="centerX" id="agE-he-kGZ"/>
+                <constraint firstItem="haD-fE-kIw" firstAttribute="height" secondItem="E1d-Ov-l9d" secondAttribute="height" multiplier="2/3" id="gXM-am-Xng"/>
+                <constraint firstItem="kcU-V4-bqu" firstAttribute="bottom" secondItem="Z2M-8i-V7U" secondAttribute="bottom" id="gzz-zh-ZPb"/>
+                <constraint firstItem="Z2M-8i-V7U" firstAttribute="top" secondItem="jif-7s-sok" secondAttribute="bottom" constant="5" id="nyu-uR-vd5"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="kcU-V4-bqu"/>
+            <point key="canvasLocation" x="136" y="306.5"/>
+        </view>
+    </objects>
+</document>

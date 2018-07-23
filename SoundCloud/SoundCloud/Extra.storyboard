@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Poo-hd-DZo">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Custom Tabbar View Controller-->
+        <scene sceneID="kzy-zK-tga">
+            <objects>
+                <viewController storyboardIdentifier="CustomTabbarViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Poo-hd-DZo" customClass="CustomTabbarViewController" customModule="SoundCloud" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uJj-gq-O7c">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dGV-En-o6m">
+                                <rect key="frame" x="0.0" y="605" width="375" height="62"/>
+                                <subviews>
+                                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LWi-5W-Wt6" customClass="CustomTabbarItem" customModule="SoundCloud" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="125" height="62"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iPM-jp-UZJ" customClass="CustomTabbarItem" customModule="SoundCloud" customModuleProvider="target">
+                                        <rect key="frame" x="125" y="0.0" width="125" height="62"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LXk-zM-NTV" customClass="CustomTabbarItem" customModule="SoundCloud" customModuleProvider="target">
+                                        <rect key="frame" x="250" y="0.0" width="125" height="62"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="iPM-jp-UZJ" firstAttribute="centerY" secondItem="dGV-En-o6m" secondAttribute="centerY" id="5Kc-Na-YJB"/>
+                                    <constraint firstItem="iPM-jp-UZJ" firstAttribute="width" secondItem="LWi-5W-Wt6" secondAttribute="width" id="6cE-CZ-2va"/>
+                                    <constraint firstItem="LWi-5W-Wt6" firstAttribute="centerY" secondItem="dGV-En-o6m" secondAttribute="centerY" id="9R3-Ge-1gP"/>
+                                    <constraint firstItem="LWi-5W-Wt6" firstAttribute="leading" secondItem="dGV-En-o6m" secondAttribute="leading" id="BkT-W6-WSE"/>
+                                    <constraint firstItem="iPM-jp-UZJ" firstAttribute="top" secondItem="dGV-En-o6m" secondAttribute="top" id="FC1-fi-YgB"/>
+                                    <constraint firstAttribute="trailing" secondItem="LXk-zM-NTV" secondAttribute="trailing" id="LLL-2i-rmH"/>
+                                    <constraint firstItem="LXk-zM-NTV" firstAttribute="width" secondItem="iPM-jp-UZJ" secondAttribute="width" id="Wza-xG-K4c"/>
+                                    <constraint firstItem="LXk-zM-NTV" firstAttribute="leading" secondItem="iPM-jp-UZJ" secondAttribute="trailing" id="X5J-oX-cWH"/>
+                                    <constraint firstItem="LXk-zM-NTV" firstAttribute="centerY" secondItem="dGV-En-o6m" secondAttribute="centerY" id="fNT-lh-L8W"/>
+                                    <constraint firstItem="iPM-jp-UZJ" firstAttribute="leading" secondItem="LWi-5W-Wt6" secondAttribute="trailing" id="hRG-qU-kAA"/>
+                                    <constraint firstItem="LXk-zM-NTV" firstAttribute="top" secondItem="dGV-En-o6m" secondAttribute="top" id="igB-gm-3EU"/>
+                                    <constraint firstItem="LWi-5W-Wt6" firstAttribute="top" secondItem="dGV-En-o6m" secondAttribute="top" id="zxa-sA-Q8l"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="dGV-En-o6m" firstAttribute="leading" secondItem="uJj-gq-O7c" secondAttribute="leading" id="Gm9-mN-AHJ"/>
+                            <constraint firstAttribute="trailing" secondItem="dGV-En-o6m" secondAttribute="trailing" id="JqG-kg-4GM"/>
+                            <constraint firstItem="dGV-En-o6m" firstAttribute="bottom" secondItem="TCb-4w-xX6" secondAttribute="bottom" id="crM-VU-3V7"/>
+                            <constraint firstItem="dGV-En-o6m" firstAttribute="height" secondItem="uJj-gq-O7c" secondAttribute="height" multiplier="60/647" id="wZX-h7-gwf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="TCb-4w-xX6"/>
+                    </view>
+                    <connections>
+                        <outlet property="tabbarItemHome" destination="LWi-5W-Wt6" id="bdX-wn-D5k"/>
+                        <outlet property="tabbarItemLibrary" destination="LXk-zM-NTV" id="ksi-p1-fqT"/>
+                        <outlet property="tabbarItemSearch" destination="iPM-jp-UZJ" id="RYI-hW-PUn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZVM-Jf-XxS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="213.59999999999999" y="151.57421289355324"/>
+        </scene>
+    </scenes>
+</document>
