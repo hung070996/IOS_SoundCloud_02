@@ -10,30 +10,31 @@ import UIKit
 
 class HomeViewController: UIViewController {
     private struct Constant {
-        static var homeTableViewCell = "HomeTableViewCell"
-        static var homeCollectionViewCell = "HomeCollectionViewCell"
-        static var numberOfCellTable = 6
-        static var numberOfCellCollection = 10
-        static var numberOfCellTableInOneScreen = 3
+        static let numberOfCellTable = 6
+        static let numberOfCellCollection = 10
+        static let numberOfCellTableInOneScreen = 3
+        static let numberOfCellCollectionInOneScreen = 3
     }
 
     @IBOutlet private var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: Constant.homeTableViewCell, bundle: nil), forCellReuseIdentifier: Constant.homeTableViewCell)
+        setTableView()
+    }
+    
+    func setTableView() {
+        tableView.register(cellType: HomeTableViewCell.self)
     }
 }
 
-extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Constant.numberOfCellTable
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constant.homeTableViewCell) as? HomeTableViewCell else {
-            return UITableViewCell(style: .default, reuseIdentifier: Constant.homeTableViewCell)
-        }
+        let cell: HomeTableViewCell = tableView.dequeueReusableCell(for: indexPath)
         cell.setContentForCell(viewController: self)
         return cell
     }
@@ -43,20 +44,18 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return Constant.numberOfCellCollection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.homeCollectionViewCell, for: indexPath) as? HomeCollectionViewCell else {
-            return UICollectionViewCell()
-        }
+        let cell: HomeCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.setContentForCell()
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width / 3, height: collectionView.frame.size.height)
+        return CGSize(width: collectionView.frame.size.width / CGFloat(Constant.numberOfCellCollectionInOneScreen), height: collectionView.frame.size.height)
     }
 }
