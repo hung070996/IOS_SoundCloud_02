@@ -18,6 +18,11 @@
 		083077A32101DBB90005DEF8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083077A22101DBB90005DEF8 /* HomeViewController.swift */; };
 		083077A62101DC4D0005DEF8 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083077A42101DC4D0005DEF8 /* HomeTableViewCell.swift */; };
 		083077A72101DC4D0005DEF8 /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 083077A52101DC4D0005DEF8 /* HomeTableViewCell.xib */; };
+		1BE709C72101DF7300B855B6 /* Extra.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BE709C62101DF7300B855B6 /* Extra.storyboard */; };
+		1BE709CD2101E08100B855B6 /* CustomTabbarItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BE709CC2101E08100B855B6 /* CustomTabbarItem.xib */; };
+		1BE709CF2101E22E00B855B6 /* CustomTabbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE709CE2101E22E00B855B6 /* CustomTabbarItem.swift */; };
+		1BE709D12101E81A00B855B6 /* CustomTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE709D02101E81A00B855B6 /* CustomTabbarViewController.swift */; };
+		278EA233124D7E42DCADAB73 /* Pods_SoundCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2967ECDA7E5A61F4F85185AB /* Pods_SoundCloud.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +39,13 @@
 		083077A22101DBB90005DEF8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		083077A42101DC4D0005DEF8 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		083077A52101DC4D0005DEF8 /* HomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableViewCell.xib; sourceTree = "<group>"; };
+		1BE709C62101DF7300B855B6 /* Extra.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Extra.storyboard; sourceTree = "<group>"; };
+		1BE709CC2101E08100B855B6 /* CustomTabbarItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTabbarItem.xib; sourceTree = "<group>"; };
+		1BE709CE2101E22E00B855B6 /* CustomTabbarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarItem.swift; sourceTree = "<group>"; };
+		1BE709D02101E81A00B855B6 /* CustomTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarViewController.swift; sourceTree = "<group>"; };
+		2967ECDA7E5A61F4F85185AB /* Pods_SoundCloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoundCloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5771D31AB662973F009C49F /* Pods-SoundCloud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundCloud.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SoundCloud/Pods-SoundCloud.debug.xcconfig"; sourceTree = "<group>"; };
+		FA5A8C4C5D7C5E79DB85F8C6 /* Pods-SoundCloud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundCloud.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoundCloud/Pods-SoundCloud.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				278EA233124D7E42DCADAB73 /* Pods_SoundCloud.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +65,8 @@
 			children = (
 				08307784210191320005DEF8 /* SoundCloud */,
 				08307783210191320005DEF8 /* Products */,
+				6D30DDA5BF10B926F46E94B8 /* Pods */,
+				7228CEF88F6BEF6350125E25 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,10 +82,12 @@
 			isa = PBXGroup;
 			children = (
 				0830779A2101D9C50005DEF8 /* Home */,
+				1BE709C82101E03B00B855B6 /* CustomTabbar */,
 				08307785210191320005DEF8 /* AppDelegate.swift */,
 				08307787210191320005DEF8 /* ViewController.swift */,
 				08307789210191320005DEF8 /* Main.storyboard */,
 				0830778F210191320005DEF8 /* Assets.xcassets */,
+				1BE709C62101DF7300B855B6 /* Extra.storyboard */,
 				08307791210191320005DEF8 /* LaunchScreen.storyboard */,
 				08307794210191320005DEF8 /* Info.plist */,
 				0830778C210191320005DEF8 /* SoundCloud.xcdatamodeld */,
@@ -102,6 +119,32 @@
 				0830779F2101DA470005DEF8 /* HomeCollectionViewCell.xib */,
 				083077A42101DC4D0005DEF8 /* HomeTableViewCell.swift */,
 				083077A52101DC4D0005DEF8 /* HomeTableViewCell.xib */,
+            );
+                path = View;
+                sourceTree = "<group>";
+            };
+		1BE709C82101E03B00B855B6 /* CustomTabbar */ = {
+			isa = PBXGroup;
+			children = (
+				1BE709CB2101E05D00B855B6 /* View */,
+				1BE709C92101E04D00B855B6 /* Controller */,
+			);
+			path = CustomTabbar;
+			sourceTree = "<group>";
+		};
+		1BE709C92101E04D00B855B6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1BE709D02101E81A00B855B6 /* CustomTabbarViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1BE709CB2101E05D00B855B6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1BE709CC2101E08100B855B6 /* CustomTabbarItem.xib */,
+				1BE709CE2101E22E00B855B6 /* CustomTabbarItem.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -112,6 +155,23 @@
 				083077A22101DBB90005DEF8 /* HomeViewController.swift */,
 			);
 			path = Controller;
+            sourceTree = "<group>";
+        };
+		6D30DDA5BF10B926F46E94B8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C5771D31AB662973F009C49F /* Pods-SoundCloud.debug.xcconfig */,
+				FA5A8C4C5D7C5E79DB85F8C6 /* Pods-SoundCloud.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7228CEF88F6BEF6350125E25 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2967ECDA7E5A61F4F85185AB /* Pods_SoundCloud.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -121,9 +181,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 08307797210191320005DEF8 /* Build configuration list for PBXNativeTarget "SoundCloud" */;
 			buildPhases = (
+				75AA33FB3AB6AE214BF15E94 /* [CP] Check Pods Manifest.lock */,
 				0830777E210191320005DEF8 /* Sources */,
 				0830777F210191320005DEF8 /* Frameworks */,
 				08307780210191320005DEF8 /* Resources */,
+				6A7E6243FB784F4ADD931F67 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -176,11 +238,52 @@
 				08307790210191320005DEF8 /* Assets.xcassets in Resources */,
 				083077A12101DA470005DEF8 /* HomeCollectionViewCell.xib in Resources */,
 				083077A72101DC4D0005DEF8 /* HomeTableViewCell.xib in Resources */,
+				1BE709CD2101E08100B855B6 /* CustomTabbarItem.xib in Resources */,
 				0830778B210191320005DEF8 /* Main.storyboard in Resources */,
+				1BE709C72101DF7300B855B6 /* Extra.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6A7E6243FB784F4ADD931F67 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SoundCloud/Pods-SoundCloud-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Reusable/Reusable.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reusable.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SoundCloud/Pods-SoundCloud-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		75AA33FB3AB6AE214BF15E94 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SoundCloud-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0830777E210191320005DEF8 /* Sources */ = {
@@ -192,7 +295,9 @@
 				08307788210191320005DEF8 /* ViewController.swift in Sources */,
 				0830778E210191320005DEF8 /* SoundCloud.xcdatamodeld in Sources */,
 				083077A02101DA470005DEF8 /* HomeCollectionViewCell.swift in Sources */,
+				1BE709D12101E81A00B855B6 /* CustomTabbarViewController.swift in Sources */,
 				08307786210191320005DEF8 /* AppDelegate.swift in Sources */,
+				1BE709CF2101E22E00B855B6 /* CustomTabbarItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,16 +439,15 @@
 		};
 		08307798210191320005DEF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5771D31AB662973F009C49F /* Pods-SoundCloud.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VG5JZ5RSZ7;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SoundCloud/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.SoundCloud;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = shin.SoundCloud;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -352,16 +456,15 @@
 		};
 		08307799210191320005DEF8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA5A8C4C5D7C5E79DB85F8C6 /* Pods-SoundCloud.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VG5JZ5RSZ7;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SoundCloud/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.SoundCloud;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = shin.SoundCloud;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
