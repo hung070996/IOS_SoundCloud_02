@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TitleView" customModule="SoundCloud" customModuleProvider="target">
+            <connections>
+                <outlet property="leftButton" destination="Qh7-U9-gS8" id="Vhe-4R-l9j"/>
+                <outlet property="mainTitleLabel" destination="ear-zc-Wou" id="69K-ik-LSr"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qh7-U9-gS8" customClass="ImageButton" customModule="SoundCloud" customModuleProvider="target">
+                    <rect key="frame" x="9.5" y="10" width="40" height="40"/>
+                    <color key="backgroundColor" red="1" green="0.69019607839999997" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Qh7-U9-gS8" secondAttribute="height" id="pvA-e6-AvH"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ear-zc-Wou">
+                    <rect key="frame" x="59" y="19.5" width="255.5" height="22.5"/>
+                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="0.69019607839999997" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="Qh7-U9-gS8" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="ARN-B5-Qbb"/>
+                <constraint firstItem="ear-zc-Wou" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Axb-eQ-2KD"/>
+                <constraint firstItem="Qh7-U9-gS8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="D7W-Ya-3La"/>
+                <constraint firstItem="ear-zc-Wou" firstAttribute="leading" secondItem="Qh7-U9-gS8" secondAttribute="trailing" constant="10" id="MdY-jt-cO9"/>
+                <constraint firstItem="Qh7-U9-gS8" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="2/3" id="Tfs-rB-Gmg"/>
+                <constraint firstItem="ear-zc-Wou" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="VkT-lJ-hyi"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+</document>

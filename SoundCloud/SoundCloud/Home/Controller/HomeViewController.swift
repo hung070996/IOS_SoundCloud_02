@@ -14,8 +14,10 @@ class HomeViewController: UIViewController {
         static let numberOfCellCollection = 10
         static let numberOfCellTableInOneScreen = 3
         static let numberOfCellCollectionInOneScreen = 3
+        static let title = "Home"
     }
 
+    @IBOutlet private var titleView: TitleView!
     @IBOutlet private var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -25,6 +27,11 @@ class HomeViewController: UIViewController {
     
     func setTableView() {
         tableView.register(cellType: HomeTableViewCell.self)
+    }
+    
+    func setTitleView() {
+        titleView.setTitle(title: Constant.title)
+        titleView.setShowLeftButton(isShow: false)
     }
 }
 
