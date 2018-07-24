@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="146" id="KGk-i7-Jjw" customClass="CurrentPlaylistTableViewCell" customModule="SoundCloud" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="146"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="145.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oPA-qy-eUh">
+                        <rect key="frame" x="10" y="37.5" width="32" height="70.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pdb-kn-dFP">
+                                <rect key="frame" x="0.0" y="24" width="32" height="22.5"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Pdb-kn-dFP" firstAttribute="centerX" secondItem="oPA-qy-eUh" secondAttribute="centerX" id="3fi-Va-xfP"/>
+                            <constraint firstAttribute="height" constant="70" id="Nmt-Vk-4o4"/>
+                            <constraint firstItem="Pdb-kn-dFP" firstAttribute="width" secondItem="oPA-qy-eUh" secondAttribute="width" id="qF1-Bb-UBk"/>
+                            <constraint firstItem="Pdb-kn-dFP" firstAttribute="centerY" secondItem="oPA-qy-eUh" secondAttribute="centerY" id="vKp-5w-x3A"/>
+                        </constraints>
+                    </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="exF-u3-eo7">
+                        <rect key="frame" x="52" y="52.5" width="258" height="42"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1DO-V6-pnR">
+                                <rect key="frame" x="0.0" y="0.0" width="258" height="22.5"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VP1-Wi-syT">
+                                <rect key="frame" x="0.0" y="22.5" width="258" height="19.5"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="exF-u3-eo7" firstAttribute="leading" secondItem="oPA-qy-eUh" secondAttribute="trailing" constant="10" id="R22-6q-S68"/>
+                    <constraint firstItem="oPA-qy-eUh" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="c5d-uc-gQ8"/>
+                    <constraint firstAttribute="trailing" secondItem="exF-u3-eo7" secondAttribute="trailing" constant="10" id="dO9-CP-bx4"/>
+                    <constraint firstItem="oPA-qy-eUh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="hzA-z2-by0"/>
+                    <constraint firstItem="exF-u3-eo7" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="jEr-IY-jmy"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="oPA-qy-eUh" secondAttribute="bottom" constant="10" id="mbY-Ca-wBa"/>
+                    <constraint firstItem="oPA-qy-eUh" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="1/10" id="nV3-zc-h8j"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.54117647059999996" green="0.4039215686" blue="0.74117647060000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="lblIndex" destination="Pdb-kn-dFP" id="fsY-fC-fV6"/>
+                <outlet property="lblNameOfSong" destination="1DO-V6-pnR" id="hcw-gE-Mt6"/>
+                <outlet property="lblSinger" destination="VP1-Wi-syT" id="q74-Ur-wge"/>
+            </connections>
+            <point key="canvasLocation" x="159" y="0.0"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -9,7 +9,7 @@ DEPENDENCIES:
   - Reusable
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Reusable
 
 SPEC CHECKSUMS:
@@ -17,4 +17,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: d05269360d19e106513c30c0b27bbb670c087293
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3
