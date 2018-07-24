@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="u1M-N8-ftL">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -86,6 +86,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="117.39130434782609"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="vNX-jF-VJA">
+            <objects>
+                <viewController id="u1M-N8-ftL" customClass="SearchViewController" customModule="SoundCloud" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="s7l-qK-jT5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="F9M-nX-uCc">
+                                <rect key="frame" x="0.0" y="20" width="375" height="60"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="u1M-N8-ftL" id="zrh-Vs-UHz"/>
+                                </connections>
+                            </searchBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xLE-gf-vWI" customClass="ResultSearchView" customModule="SoundCloud" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7uc-bn-cWZ" customClass="SuggestionSearchView" customModule="SoundCloud" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="7uc-bn-cWZ" firstAttribute="leading" secondItem="9jy-7O-VaP" secondAttribute="leading" id="2HL-l6-RH4"/>
+                            <constraint firstItem="9jy-7O-VaP" firstAttribute="bottom" secondItem="xLE-gf-vWI" secondAttribute="bottom" id="4m4-kT-fnf"/>
+                            <constraint firstItem="F9M-nX-uCc" firstAttribute="trailing" secondItem="9jy-7O-VaP" secondAttribute="trailing" id="7h5-78-rF3"/>
+                            <constraint firstItem="F9M-nX-uCc" firstAttribute="top" secondItem="9jy-7O-VaP" secondAttribute="top" id="EF0-5U-RwT"/>
+                            <constraint firstItem="9jy-7O-VaP" firstAttribute="trailing" secondItem="7uc-bn-cWZ" secondAttribute="trailing" id="UeM-5O-4XC"/>
+                            <constraint firstItem="9jy-7O-VaP" firstAttribute="trailing" secondItem="xLE-gf-vWI" secondAttribute="trailing" id="ZQ1-yE-rA4"/>
+                            <constraint firstItem="F9M-nX-uCc" firstAttribute="leading" secondItem="9jy-7O-VaP" secondAttribute="leading" id="b9O-H2-qfC"/>
+                            <constraint firstItem="xLE-gf-vWI" firstAttribute="top" secondItem="F9M-nX-uCc" secondAttribute="bottom" id="e28-Dl-C6e"/>
+                            <constraint firstItem="9jy-7O-VaP" firstAttribute="bottom" secondItem="7uc-bn-cWZ" secondAttribute="bottom" id="ofJ-7Q-MFL"/>
+                            <constraint firstItem="7uc-bn-cWZ" firstAttribute="top" secondItem="F9M-nX-uCc" secondAttribute="bottom" id="uhu-Go-fLi"/>
+                            <constraint firstItem="F9M-nX-uCc" firstAttribute="height" secondItem="9jy-7O-VaP" secondAttribute="height" multiplier="60/647" id="z1K-DG-7gD"/>
+                            <constraint firstItem="xLE-gf-vWI" firstAttribute="leading" secondItem="9jy-7O-VaP" secondAttribute="leading" id="zcv-F7-hkm"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9jy-7O-VaP"/>
+                    </view>
+                    <connections>
+                        <outlet property="resultSearchView" destination="xLE-gf-vWI" id="jGK-JH-dmb"/>
+                        <outlet property="suggestionSearchView" destination="7uc-bn-cWZ" id="fsR-rX-jWS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rAM-pi-Bhq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="881" y="117"/>
         </scene>
     </scenes>
 </document>

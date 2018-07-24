@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Reusable
 
-class HomeCollectionViewCell: UICollectionViewCell {
+class HomeCollectionViewCell: UICollectionViewCell, NibReusable {
 
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var image: UIImageView!

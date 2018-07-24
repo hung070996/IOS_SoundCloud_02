@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import Reusable
 
-class HomeTableViewCell: UITableViewCell {
+class HomeTableViewCell: UITableViewCell, NibReusable {
     private struct Identifier {
-        static var homeCollectionViewCell = "HomeCollectionViewCell"
+        static let homeCollectionViewCell = "HomeCollectionViewCell"
     }
 
     @IBOutlet private var titleLabel: UILabel!
@@ -19,12 +20,11 @@ class HomeTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
-    func setContentForCell(viewController : UIViewController) {
+    func setContentForCell(viewController: UIViewController) {
         self.collectionView.delegate = viewController as? UICollectionViewDelegate
         self.collectionView.dataSource = viewController as? UICollectionViewDataSource
-        self.collectionView.register(UINib(nibName: Identifier.homeCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Identifier.homeCollectionViewCell)
+        self.collectionView.register(cellType: HomeCollectionViewCell.self)
     }
 }
