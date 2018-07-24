@@ -27,9 +27,10 @@
 		08475DFC210613EA0081D72A /* SuggestionSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08475DFB210613EA0081D72A /* SuggestionSearchView.swift */; };
 		08475DFF2106152F0081D72A /* HistorySearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08475DFD2106152F0081D72A /* HistorySearchCell.swift */; };
 		08475E002106152F0081D72A /* HistorySearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08475DFE2106152F0081D72A /* HistorySearchCell.xib */; };
+		1B6F88EF2105CE5D00CEB660 /* PlaySongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6F88EE2105CE5D00CEB660 /* PlaySongViewController.swift */; };
 		1BE709C72101DF7300B855B6 /* Extra.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BE709C62101DF7300B855B6 /* Extra.storyboard */; };
-		1BE709CD2101E08100B855B6 /* CustomTabbarItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BE709CC2101E08100B855B6 /* CustomTabbarItem.xib */; };
-		1BE709CF2101E22E00B855B6 /* CustomTabbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE709CE2101E22E00B855B6 /* CustomTabbarItem.swift */; };
+		1BE709CD2101E08100B855B6 /* ImageButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BE709CC2101E08100B855B6 /* ImageButton.xib */; };
+		1BE709CF2101E22E00B855B6 /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE709CE2101E22E00B855B6 /* ImageButton.swift */; };
 		1BE709D12101E81A00B855B6 /* CustomTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE709D02101E81A00B855B6 /* CustomTabbarViewController.swift */; };
 		278EA233124D7E42DCADAB73 /* Pods_SoundCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2967ECDA7E5A61F4F85185AB /* Pods_SoundCloud.framework */; };
 /* End PBXBuildFile section */
@@ -57,9 +58,10 @@
 		08475DFB210613EA0081D72A /* SuggestionSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionSearchView.swift; sourceTree = "<group>"; };
 		08475DFD2106152F0081D72A /* HistorySearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySearchCell.swift; sourceTree = "<group>"; };
 		08475DFE2106152F0081D72A /* HistorySearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistorySearchCell.xib; sourceTree = "<group>"; };
+		1B6F88EE2105CE5D00CEB660 /* PlaySongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySongViewController.swift; sourceTree = "<group>"; };
 		1BE709C62101DF7300B855B6 /* Extra.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Extra.storyboard; sourceTree = "<group>"; };
-		1BE709CC2101E08100B855B6 /* CustomTabbarItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTabbarItem.xib; sourceTree = "<group>"; };
-		1BE709CE2101E22E00B855B6 /* CustomTabbarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarItem.swift; sourceTree = "<group>"; };
+		1BE709CC2101E08100B855B6 /* ImageButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageButton.xib; sourceTree = "<group>"; };
+		1BE709CE2101E22E00B855B6 /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
 		1BE709D02101E81A00B855B6 /* CustomTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarViewController.swift; sourceTree = "<group>"; };
 		2967ECDA7E5A61F4F85185AB /* Pods_SoundCloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoundCloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5771D31AB662973F009C49F /* Pods-SoundCloud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundCloud.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SoundCloud/Pods-SoundCloud.debug.xcconfig"; sourceTree = "<group>"; };
@@ -100,6 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				08475DE72105DFF90081D72A /* Search */,
+				1BD6D3842106B7510085F699 /* CommonView */,
+				1B6F88EB2105C6BF00CEB660 /* PlayingSong */,
 				0830779A2101D9C50005DEF8 /* Home */,
 				1BE709C82101E03B00B855B6 /* CustomTabbar */,
 				08307785210191320005DEF8 /* AppDelegate.swift */,
@@ -190,6 +194,47 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		1B6F88EB2105C6BF00CEB660 /* PlayingSong */ = {
+			isa = PBXGroup;
+			children = (
+				1B6F88EC2105C6DF00CEB660 /* View */,
+				1B6F88ED2105C6E700CEB660 /* Controller */,
+			);
+			path = PlayingSong;
+			sourceTree = "<group>";
+		};
+		1B6F88EC2105C6DF00CEB660 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1B6F88ED2105C6E700CEB660 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1B6F88EE2105CE5D00CEB660 /* PlaySongViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1BD6D3842106B7510085F699 /* CommonView */ = {
+			isa = PBXGroup;
+			children = (
+				1BD6D3852106B77D0085F699 /* ImageButton */,
+			);
+			path = CommonView;
+			sourceTree = "<group>";
+		};
+		1BD6D3852106B77D0085F699 /* ImageButton */ = {
+			isa = PBXGroup;
+			children = (
+				1BE709CC2101E08100B855B6 /* ImageButton.xib */,
+				1BE709CE2101E22E00B855B6 /* ImageButton.swift */,
+			);
+			path = ImageButton;
+			sourceTree = "<group>";
+		};
 		1BE709C82101E03B00B855B6 /* CustomTabbar */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,8 +255,6 @@
 		1BE709CB2101E05D00B855B6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1BE709CC2101E08100B855B6 /* CustomTabbarItem.xib */,
-				1BE709CE2101E22E00B855B6 /* CustomTabbarItem.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -301,7 +344,8 @@
 				083077A72101DC4D0005DEF8 /* HomeTableViewCell.xib in Resources */,
 				08475DF42105E4330081D72A /* ResultSearchCell.xib in Resources */,
 				08475DF62105F2600081D72A /* ResultSearchView.xib in Resources */,
-				1BE709CD2101E08100B855B6 /* CustomTabbarItem.xib in Resources */,
+				1BE709CD2101E08100B855B6 /* ImageButton.xib in Resources */,
+				1BE709CD2101E08100B855B6 /* ImageButton.xib in Resources */,
 				0830778B210191320005DEF8 /* Main.storyboard in Resources */,
 				1BE709C72101DF7300B855B6 /* Extra.storyboard in Resources */,
 			);
@@ -354,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				083077A62101DC4D0005DEF8 /* HomeTableViewCell.swift in Sources */,
+				1B6F88EF2105CE5D00CEB660 /* PlaySongViewController.swift in Sources */,
 				083077A32101DBB90005DEF8 /* HomeViewController.swift in Sources */,
 				08307788210191320005DEF8 /* ViewController.swift in Sources */,
 				08475DF82105F2740081D72A /* ResultSearchView.swift in Sources */,
@@ -365,7 +410,7 @@
 				083077A02101DA470005DEF8 /* HomeCollectionViewCell.swift in Sources */,
 				1BE709D12101E81A00B855B6 /* CustomTabbarViewController.swift in Sources */,
 				08307786210191320005DEF8 /* AppDelegate.swift in Sources */,
-				1BE709CF2101E22E00B855B6 /* CustomTabbarItem.swift in Sources */,
+				1BE709CF2101E22E00B855B6 /* ImageButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
