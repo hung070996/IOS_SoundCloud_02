@@ -26,19 +26,8 @@
                             <constraint firstAttribute="width" secondItem="xNy-AR-xzW" secondAttribute="height" id="nOx-zv-Wr3"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1L-Jn-v5a">
-                        <rect key="frame" x="341" y="37" width="24" height="24"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="24" id="8Lk-sw-1AL"/>
-                            <constraint firstAttribute="width" secondItem="K1L-Jn-v5a" secondAttribute="height" id="q8U-Z5-6o7"/>
-                        </constraints>
-                        <state key="normal" title="Button" image="Icon_Download"/>
-                        <connections>
-                            <action selector="clickDownload:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Y3a-92-eqO"/>
-                        </connections>
-                    </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HzB-Jp-RCB">
-                        <rect key="frame" x="307" y="37" width="24" height="24"/>
+                        <rect key="frame" x="341" y="37" width="24" height="24"/>
                         <state key="normal" title="Button" image="Icon_Add_To_Playlist"/>
                         <connections>
                             <action selector="clickAddToPlaylist:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="A0Y-wd-NI9"/>
@@ -49,31 +38,42 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCR-Lb-bKv">
                                 <rect key="frame" x="0.0" y="0.0" width="42" height="40"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWp-X0-CqD">
                                 <rect key="frame" x="0.0" y="40" width="42" height="39.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                     </stackView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1L-Jn-v5a">
+                        <rect key="frame" x="307" y="37" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="8Lk-sw-1AL"/>
+                            <constraint firstAttribute="width" secondItem="K1L-Jn-v5a" secondAttribute="height" id="q8U-Z5-6o7"/>
+                        </constraints>
+                        <state key="normal" title="Button" image="Icon_Download"/>
+                        <connections>
+                            <action selector="clickDownload:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Y3a-92-eqO"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="xNy-AR-xzW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="0a0-HQ-7eJ"/>
                     <constraint firstItem="wq7-5C-IIp" firstAttribute="top" secondItem="xNy-AR-xzW" secondAttribute="top" id="3BE-Ih-hoe"/>
-                    <constraint firstItem="K1L-Jn-v5a" firstAttribute="leading" secondItem="HzB-Jp-RCB" secondAttribute="trailing" constant="10" id="3OE-PA-M2T"/>
                     <constraint firstItem="wq7-5C-IIp" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="DkV-YR-Lix"/>
+                    <constraint firstItem="K1L-Jn-v5a" firstAttribute="leading" secondItem="wq7-5C-IIp" secondAttribute="trailing" constant="10" id="Dns-RC-pI9"/>
                     <constraint firstItem="HzB-Jp-RCB" firstAttribute="centerY" secondItem="K1L-Jn-v5a" secondAttribute="centerY" id="JP9-da-nXH"/>
                     <constraint firstItem="HzB-Jp-RCB" firstAttribute="width" secondItem="K1L-Jn-v5a" secondAttribute="width" id="Op0-78-TSc"/>
-                    <constraint firstAttribute="trailing" secondItem="K1L-Jn-v5a" secondAttribute="trailing" constant="10" id="VOO-a9-Sku"/>
+                    <constraint firstItem="HzB-Jp-RCB" firstAttribute="leading" secondItem="K1L-Jn-v5a" secondAttribute="trailing" constant="10" id="VUY-j5-j80"/>
                     <constraint firstItem="xNy-AR-xzW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="fUS-QQ-KCI"/>
                     <constraint firstItem="K1L-Jn-v5a" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hPH-lg-xHX"/>
                     <constraint firstItem="wq7-5C-IIp" firstAttribute="leading" secondItem="xNy-AR-xzW" secondAttribute="trailing" constant="10" id="hd5-kX-zMy"/>
-                    <constraint firstItem="HzB-Jp-RCB" firstAttribute="leading" secondItem="wq7-5C-IIp" secondAttribute="trailing" constant="10" id="pB9-3Z-YmE"/>
+                    <constraint firstAttribute="trailing" secondItem="HzB-Jp-RCB" secondAttribute="trailing" constant="10" id="lO2-xm-n2X"/>
                     <constraint firstItem="HzB-Jp-RCB" firstAttribute="height" secondItem="K1L-Jn-v5a" secondAttribute="height" id="sgq-R0-gRQ"/>
                     <constraint firstItem="xNy-AR-xzW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="uz0-SO-sfA"/>
                 </constraints>

@@ -29,6 +29,7 @@ enum ImageButtonType {
     case playNext
     case shuffle
     case loop
+    case playlist
     
     var image: UIImage {
         switch self {
@@ -60,6 +61,14 @@ enum ImageButtonType {
             return #imageLiteral(resourceName: "Icon_Shuffle")
         case .loop:
             return #imageLiteral(resourceName: "Icon_Loop")
+        case .delete:
+            return #imageLiteral(resourceName: "Icon_Delete")
+        case .edit:
+            return #imageLiteral(resourceName: "Icon_Edit")
+        case .back:
+            return #imageLiteral(resourceName: "Icon_Minimize_Down")
+        case .playlist:
+            return #imageLiteral(resourceName: "Icon_Playlist_Holder")
         default:
             return #imageLiteral(resourceName: "Icon_Playlist_Holder")
         }
@@ -94,7 +103,7 @@ class ImageButton: UIView, NibOwnerLoadable {
     @IBOutlet private weak var imvIcon: UIImageView!
     @IBOutlet private weak var viewHighlight: UIView!
     @IBOutlet private weak var constraintMultiplerOfImage: NSLayoutConstraint!
-    var type: ImageButtonType!
+    private var type: ImageButtonType!
     weak var delegate: ImageButtonDelegate?
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
