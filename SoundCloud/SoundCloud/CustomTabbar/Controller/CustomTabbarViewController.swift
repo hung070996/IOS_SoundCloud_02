@@ -9,18 +9,32 @@
 import UIKit
 
 class CustomTabbarViewController: UIViewController {
-    @IBOutlet private weak var tabbarItemHome: CustomTabbarItem!
-    @IBOutlet private weak var tabbarItemSearch: CustomTabbarItem!
-    @IBOutlet private weak var tabbarItemLibrary: CustomTabbarItem!
+    @IBOutlet private weak var tabbarItemHome: ImageButton!
+    @IBOutlet private weak var tabbarItemSearch: ImageButton!
+    @IBOutlet private weak var tabbarItemLibrary: ImageButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setTabbarDisplay()
+        setDelegate()
     }
-
+    
     func setTabbarDisplay() {
-        tabbarItemHome.type = .homePage
-        tabbarItemSearch.type = .search
-        tabbarItemLibrary.type = .library
+        tabbarItemHome.muttating(type: .homePage)
+        tabbarItemSearch.muttating(type: .search)
+        tabbarItemLibrary.muttating(type: .library)
+        tabbarItemHome.setHighlightView(isHidden: false)
+    }
+    
+    func setDelegate() {
+        [tabbarItemHome, tabbarItemSearch, tabbarItemLibrary].forEach { (button) in
+            button?.delegate = self
+        }
+    }
+}
+
+extension CustomTabbarViewController: ImageButtonDelegate {
+    func handleImageButtonClicked(type: ImageButtonType) {
+        print("Type: \(type)")
     }
 }
