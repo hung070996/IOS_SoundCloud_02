@@ -7,6 +7,8 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,73 +23,71 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xNy-AR-xzW">
-                        <rect key="frame" x="10" y="10" width="79.5" height="79.5"/>
+                        <rect key="frame" x="10" y="18" width="64" height="64"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="xNy-AR-xzW" secondAttribute="height" id="nOx-zv-Wr3"/>
+                            <constraint firstAttribute="width" constant="64" id="vmx-s0-iDv"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HzB-Jp-RCB">
-                        <rect key="frame" x="341" y="37" width="24" height="24"/>
-                        <state key="normal" title="Button" image="Icon_Add_To_Playlist"/>
-                        <connections>
-                            <action selector="clickAddToPlaylist:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="A0Y-wd-NI9"/>
-                        </connections>
-                    </button>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="wq7-5C-IIp">
-                        <rect key="frame" x="99.5" y="10" width="197.5" height="79.5"/>
+                        <rect key="frame" x="84" y="18" width="188" height="64"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCR-Lb-bKv">
-                                <rect key="frame" x="0.0" y="0.0" width="42" height="40"/>
+                                <rect key="frame" x="0.0" y="0.0" width="42" height="32"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWp-X0-CqD">
-                                <rect key="frame" x="0.0" y="40" width="42" height="39.5"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="0.0" y="32" width="37" height="32"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                     </stackView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1L-Jn-v5a">
-                        <rect key="frame" x="307" y="37" width="24" height="24"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DZf-Vb-0UN" customClass="ImageButton" customModule="SoundCloud" customModuleProvider="target">
+                        <rect key="frame" x="330.5" y="30" width="38.5" height="38"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="24" id="8Lk-sw-1AL"/>
-                            <constraint firstAttribute="width" secondItem="K1L-Jn-v5a" secondAttribute="height" id="q8U-Z5-6o7"/>
+                            <constraint firstAttribute="width" secondItem="DZf-Vb-0UN" secondAttribute="height" id="Io1-i0-gdL"/>
                         </constraints>
-                        <state key="normal" title="Button" image="Icon_Download"/>
-                        <connections>
-                            <action selector="clickDownload:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Y3a-92-eqO"/>
-                        </connections>
-                    </button>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BVY-xW-VW6" customClass="ImageButton" customModule="SoundCloud" customModuleProvider="target">
+                        <rect key="frame" x="282" y="30" width="38.5" height="38"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="BVY-xW-VW6" secondAttribute="height" id="Bje-kD-Zgo"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="xNy-AR-xzW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="0a0-HQ-7eJ"/>
                     <constraint firstItem="wq7-5C-IIp" firstAttribute="top" secondItem="xNy-AR-xzW" secondAttribute="top" id="3BE-Ih-hoe"/>
+                    <constraint firstItem="BVY-xW-VW6" firstAttribute="width" secondItem="DZf-Vb-0UN" secondAttribute="width" id="3Rw-cg-WGU"/>
+                    <constraint firstItem="BVY-xW-VW6" firstAttribute="centerY" secondItem="DZf-Vb-0UN" secondAttribute="centerY" id="8hE-4Y-ZcS"/>
+                    <constraint firstItem="DZf-Vb-0UN" firstAttribute="leading" secondItem="BVY-xW-VW6" secondAttribute="trailing" constant="10" id="By8-kq-gdr"/>
+                    <constraint firstItem="DZf-Vb-0UN" firstAttribute="height" secondItem="xNy-AR-xzW" secondAttribute="height" multiplier="3/5" id="Ct4-db-nzS"/>
                     <constraint firstItem="wq7-5C-IIp" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="DkV-YR-Lix"/>
-                    <constraint firstItem="K1L-Jn-v5a" firstAttribute="leading" secondItem="wq7-5C-IIp" secondAttribute="trailing" constant="10" id="Dns-RC-pI9"/>
-                    <constraint firstItem="HzB-Jp-RCB" firstAttribute="centerY" secondItem="K1L-Jn-v5a" secondAttribute="centerY" id="JP9-da-nXH"/>
-                    <constraint firstItem="HzB-Jp-RCB" firstAttribute="width" secondItem="K1L-Jn-v5a" secondAttribute="width" id="Op0-78-TSc"/>
-                    <constraint firstItem="HzB-Jp-RCB" firstAttribute="leading" secondItem="K1L-Jn-v5a" secondAttribute="trailing" constant="10" id="VUY-j5-j80"/>
+                    <constraint firstItem="BVY-xW-VW6" firstAttribute="leading" secondItem="wq7-5C-IIp" secondAttribute="trailing" constant="10" id="MfG-OK-M8A"/>
+                    <constraint firstItem="BVY-xW-VW6" firstAttribute="width" secondItem="BVY-xW-VW6" secondAttribute="height" id="YTK-OG-9dL"/>
                     <constraint firstItem="xNy-AR-xzW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="fUS-QQ-KCI"/>
-                    <constraint firstItem="K1L-Jn-v5a" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hPH-lg-xHX"/>
                     <constraint firstItem="wq7-5C-IIp" firstAttribute="leading" secondItem="xNy-AR-xzW" secondAttribute="trailing" constant="10" id="hd5-kX-zMy"/>
-                    <constraint firstAttribute="trailing" secondItem="HzB-Jp-RCB" secondAttribute="trailing" constant="10" id="lO2-xm-n2X"/>
-                    <constraint firstItem="HzB-Jp-RCB" firstAttribute="height" secondItem="K1L-Jn-v5a" secondAttribute="height" id="sgq-R0-gRQ"/>
-                    <constraint firstItem="xNy-AR-xzW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="uz0-SO-sfA"/>
+                    <constraint firstItem="DZf-Vb-0UN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="kKa-0T-9ZS"/>
+                    <constraint firstItem="xNy-AR-xzW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="uz0-SO-sfA"/>
+                    <constraint firstItem="DZf-Vb-0UN" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="10" id="vnb-Cn-W41"/>
+                    <constraint firstItem="BVY-xW-VW6" firstAttribute="height" secondItem="DZf-Vb-0UN" secondAttribute="height" id="zmO-8Y-OEl"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="addPlaylistButton" destination="DZf-Vb-0UN" id="aSx-nF-lL6"/>
+                <outlet property="downloadButton" destination="BVY-xW-VW6" id="hWt-cl-HKZ"/>
                 <outlet property="imageSong" destination="xNy-AR-xzW" id="d8U-l0-Ryu"/>
                 <outlet property="nameArtistLabel" destination="TWp-X0-CqD" id="l4j-Hb-Ojt"/>
                 <outlet property="nameSongLabel" destination="GCR-Lb-bKv" id="1EO-yQ-5Ej"/>
             </connections>
+            <point key="canvasLocation" x="32.5" y="119"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="Icon_Add_To_Playlist" width="32" height="32"/>
-        <image name="Icon_Download" width="32" height="32"/>
-    </resources>
 </document>

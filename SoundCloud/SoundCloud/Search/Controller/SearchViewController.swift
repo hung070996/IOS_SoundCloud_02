@@ -42,13 +42,9 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension SearchViewController: ResultSearchCellDelegate {
-    func clickAddToPlaylist() {
-        print("clickAddToPlaylist")
-    }
-    
-    func clickDownload() {
-        print("clickDownload")
+extension SearchViewController: ImageButtonDelegate {
+    func handleImageButtonClicked(type: ImageButtonType) {
+        print(type)
     }
 }
 
@@ -60,6 +56,6 @@ extension SearchViewController: SuggestionSearchViewDelegate {
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        suggestionSearchView.isHidden = searchText.isEmpty ? false : true
+        suggestionSearchView.isHidden = !searchText.isEmpty
     }
 }

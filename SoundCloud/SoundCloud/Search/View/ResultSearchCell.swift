@@ -9,30 +9,27 @@
 import UIKit
 import Reusable
 
-protocol ResultSearchCellDelegate: class {
-    func clickAddToPlaylist()
-    func clickDownload()
-}
-
 class ResultSearchCell: UITableViewCell, NibReusable {
-    weak var delegate: ResultSearchCellDelegate?
     @IBOutlet private var nameArtistLabel: UILabel!
     @IBOutlet private var nameSongLabel: UILabel!
     @IBOutlet private var imageSong: UIImageView!
+    @IBOutlet private var addPlaylistButton: ImageButton!
+    @IBOutlet private var downloadButton: ImageButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
     func setContentForCell(viewController: UIViewController) {
-        self.delegate = viewController as? ResultSearchCellDelegate
+        addPlaylistButton.muttating(type: ImageButtonType.addToPlaylist)
+        addPlaylistButton.setTintColorOfImage(color: .black)
+        addPlaylistButton.delegate = viewController as? ImageButtonDelegate
+        downloadButton.muttating(type: ImageButtonType.download)
+        downloadButton.setTintColorOfImage(color: .black)
+        downloadButton.delegate = viewController as? ImageButtonDelegate
     }
     
-    @IBAction func clickAddToPlaylist(_ sender: Any) {
-        delegate?.clickAddToPlaylist()
-    }
-    
-    @IBAction func clickDownload(_ sender: Any) {
-        delegate?.clickDownload()
+    func setShowDownloadButton(isShow: Bool) {
+        downloadButton.isHidden = !isShow
     }
 }
