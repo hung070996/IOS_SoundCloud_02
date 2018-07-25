@@ -32,7 +32,7 @@ class PlaylistCell: UITableViewCell, NibReusable {
         deleteButton.setTintColorOfImage(color: .black)
         deleteButton.delegate = viewController as? ImageButtonDelegate
         imagePlaylist.muttating(type: ImageButtonType.playlist)
-        imagePlaylist.setTintColorOfImage(color: .black)
+        imagePlaylist.setTintColorOfImage(color: .white)
         imagePlaylist.layer.cornerRadius = CGFloat(Constant.cornerRadius)
     }
 }

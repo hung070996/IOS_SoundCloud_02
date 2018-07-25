@@ -16,6 +16,7 @@
 		0822F05A2106DF6300B59C14 /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE709CE2101E22E00B855B6 /* ImageButton.swift */; };
 		0822F05D2106E10A00B59C14 /* PlaylistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0822F05B2106E10A00B59C14 /* PlaylistCell.swift */; };
 		0822F05E2106E10A00B59C14 /* PlaylistCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0822F05C2106E10A00B59C14 /* PlaylistCell.xib */; };
+		0822F06421071B5F00B59C14 /* ListSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0822F06321071B5F00B59C14 /* ListSongViewController.swift */; };
 		08307786210191320005DEF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08307785210191320005DEF8 /* AppDelegate.swift */; };
 		0830778B210191320005DEF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08307789210191320005DEF8 /* Main.storyboard */; };
 		0830778E210191320005DEF8 /* SoundCloud.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0830778C210191320005DEF8 /* SoundCloud.xcdatamodeld */; };
@@ -56,6 +57,7 @@
 		0822F0582106D12100B59C14 /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
 		0822F05B2106E10A00B59C14 /* PlaylistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCell.swift; sourceTree = "<group>"; };
 		0822F05C2106E10A00B59C14 /* PlaylistCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaylistCell.xib; sourceTree = "<group>"; };
+		0822F06321071B5F00B59C14 /* ListSongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSongViewController.swift; sourceTree = "<group>"; };
 		08307782210191320005DEF8 /* SoundCloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundCloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08307785210191320005DEF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0830778A210191320005DEF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -181,6 +183,38 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		0822F05F21071B2600B59C14 /* ListSong */ = {
+			isa = PBXGroup;
+			children = (
+				0822F06221071B4A00B59C14 /* Controller */,
+				0822F06121071B4500B59C14 /* View */,
+				0822F06021071B3F00B59C14 /* Modal */,
+			);
+			path = ListSong;
+			sourceTree = "<group>";
+		};
+		0822F06021071B3F00B59C14 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modal;
+			sourceTree = "<group>";
+		};
+		0822F06121071B4500B59C14 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0822F06221071B4A00B59C14 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0822F06321071B5F00B59C14 /* ListSongViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		08307779210191320005DEF8 = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +236,7 @@
 		08307784210191320005DEF8 /* SoundCloud */ = {
 			isa = PBXGroup;
 			children = (
+				0822F05F21071B2600B59C14 /* ListSong */,
 				0822F0542106D0F100B59C14 /* Playlist */,
 				0822F04A2106C69700B59C14 /* Library */,
 				0822F0452106BBB700B59C14 /* TitleView */,
@@ -564,6 +599,7 @@
 				1BFCC86E2106E3C600A509B8 /* CurrentSongPlaying.swift in Sources */,
 				083077A62101DC4D0005DEF8 /* HomeTableViewCell.swift in Sources */,
 				1BFCC87521070D1100A509B8 /* CurrentPlaylistViewController.swift in Sources */,
+				0822F06421071B5F00B59C14 /* ListSongViewController.swift in Sources */,
 				1B6F88EF2105CE5D00CEB660 /* PlaySongViewController.swift in Sources */,
 				083077A32101DBB90005DEF8 /* HomeViewController.swift in Sources */,
 				08475DF82105F2740081D72A /* ResultSearchView.swift in Sources */,
