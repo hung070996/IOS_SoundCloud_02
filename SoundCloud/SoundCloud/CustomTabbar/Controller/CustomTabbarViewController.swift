@@ -9,6 +9,7 @@
 import UIKit
 
 class CustomTabbarViewController: UIViewController {
+    @IBOutlet private weak var viewCurrentSongPlaying: CurrentSongPlaying!
     @IBOutlet private weak var tabbarItemHome: ImageButton!
     @IBOutlet private weak var tabbarItemSearch: ImageButton!
     @IBOutlet private weak var tabbarItemLibrary: ImageButton!
@@ -30,6 +31,7 @@ class CustomTabbarViewController: UIViewController {
         [tabbarItemHome, tabbarItemSearch, tabbarItemLibrary].forEach { (button) in
             button?.delegate = self
         }
+        viewCurrentSongPlaying.setDelegate(vc: self)
     }
 }
 

@@ -20,6 +20,7 @@ class PlaySongViewController: UIViewController {
     @IBOutlet private weak var ibPlay: ImageButton!
     @IBOutlet private weak var ibPlayNext: ImageButton!
     @IBOutlet private weak var ibLoop: ImageButton!
+    @IBOutlet private weak var collectionViewDisplay: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
