@@ -7,5 +7,7 @@ target 'SoundCloud' do
 
   # Pods for SoundCloud
 	pod 'Reusable'
-
+	pod 'Alamofire'
+	pod 'ObjectMapper'
+	pod 'Kingfisher'
 end
