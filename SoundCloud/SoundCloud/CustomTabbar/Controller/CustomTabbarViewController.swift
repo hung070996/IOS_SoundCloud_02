@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class CustomTabbarViewController: UIViewController {
     @IBOutlet private weak var viewCurrentSongPlaying: CurrentSongPlaying!

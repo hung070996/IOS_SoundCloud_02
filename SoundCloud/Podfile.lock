@@ -1,4 +1,7 @@
 PODS:
+  - Alamofire (4.7.2)
+  - Kingfisher (4.7.0)
+  - ObjectMapper (3.1.0)
   - Reusable (4.0.2):
     - Reusable/Storyboard (= 4.0.2)
     - Reusable/View (= 4.0.2)
@@ -6,15 +9,24 @@ PODS:
   - Reusable/View (4.0.2)
 
 DEPENDENCIES:
+  - Alamofire
+  - Kingfisher
+  - ObjectMapper
   - Reusable
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Kingfisher
+    - ObjectMapper
     - Reusable
 
 SPEC CHECKSUMS:
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  Kingfisher: da6b005aa96d37698e3e4f1ccfe96a5b9bbf27d6
+  ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
   Reusable: 584a5629747c52e0f6a77841b400dc2643f6fa0f
 
-PODFILE CHECKSUM: d05269360d19e106513c30c0b27bbb670c087293
+PODFILE CHECKSUM: acd83f8f7747de7adf7afd8d65583e41d5ce245c
 
 COCOAPODS: 1.5.3
