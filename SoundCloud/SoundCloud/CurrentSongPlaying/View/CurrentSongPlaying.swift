@@ -40,4 +40,8 @@ class CurrentSongPlaying: UIView, NibOwnerLoadable {
             }
         }
     }
+    
+    func getPlayButton() -> ImageButton {
+        return ibPlay
+    }
 }
