@@ -8,8 +8,12 @@
 
 import UIKit
 import Reusable
+import Kingfisher
 
-class HomeCollectionViewCell: UICollectionViewCell, NibReusable {
+final class HomeCollectionViewCell: UICollectionViewCell, NibReusable {
+    private struct Constant {
+        static let placeholder = "Icon_Playlist_Holder"
+    }
 
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var image: UIImageView!
@@ -19,7 +23,11 @@ class HomeCollectionViewCell: UICollectionViewCell, NibReusable {
         // Initialization code
     }
 
-    func setContentForCell() {
-        
+    func setContentForCell(track: Track) {
+        nameLabel.text = track.title
+        let urlString = track.urlImage
+        let url = URL(string: urlString)
+        let placeholder = UIImage(named: Constant.placeholder)
+        image.kf.setImage(with: url, placeholder: placeholder)
     }
 }

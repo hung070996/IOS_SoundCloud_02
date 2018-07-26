@@ -10,4 +10,5 @@ target 'SoundCloud' do
 	pod 'Alamofire'
 	pod 'ObjectMapper'
 	pod 'Kingfisher'
+	pod 'SpringIndicator'
 end

@@ -7,12 +7,14 @@ PODS:
     - Reusable/View (= 4.0.2)
   - Reusable/Storyboard (4.0.2)
   - Reusable/View (4.0.2)
+  - SpringIndicator (3.0.0)
 
 DEPENDENCIES:
   - Alamofire
   - Kingfisher
   - ObjectMapper
   - Reusable
+  - SpringIndicator
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -20,13 +22,15 @@ SPEC REPOS:
     - Kingfisher
     - ObjectMapper
     - Reusable
+    - SpringIndicator
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   Kingfisher: da6b005aa96d37698e3e4f1ccfe96a5b9bbf27d6
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
   Reusable: 584a5629747c52e0f6a77841b400dc2643f6fa0f
+  SpringIndicator: 08d815e8a154dee7b786d82b98c43cc9028a769f
 
-PODFILE CHECKSUM: acd83f8f7747de7adf7afd8d65583e41d5ce245c
+PODFILE CHECKSUM: c78c48932c230938f31b4bd5231d212bec6d40df
 
 COCOAPODS: 1.5.3

@@ -20,6 +20,23 @@ enum GenreType: String {
     var encodedValue: String {
         return self.rawValue.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
     }
+    
+    var priority: Int {
+        switch self {
+        case .allMusic:
+            return 0
+        case .allAudio:
+            return 1
+        case .alternativeRock:
+            return 2
+        case .ambient:
+            return 3
+        case .classical:
+            return 4
+        case .country:
+            return 5
+        }
+    }
 }
 
 class BaseRequest: NSObject {
