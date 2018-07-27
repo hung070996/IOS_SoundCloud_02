@@ -7,15 +7,17 @@
 //
 
 import UIKit
+import SpringIndicator
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
     private struct Constant {
-        static let numberOfCellTable = 6
-        static let numberOfCellCollection = 10
-        static let numberOfCellTableInOneScreen = 3
-        static let numberOfCellCollectionInOneScreen = 3
         static let title = "Home"
+        static let numberOfCellCollectionInOneScreen = 3
+        static let estimateRowHeight = 100
     }
+    
+    private var listGenre = [Genre]()
+    private var order = [GenreType]()
 
     @IBOutlet private var titleView: TitleView!
     @IBOutlet private var tableView: UITableView!
@@ -23,10 +25,33 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTableView()
+        setTitleView()
+        loadData()
+    }
+    
+    func loadData() {
+        let loading = indicator
+        loading.start()
+        order = [.allMusic, .allAudio, .alternativeRock, .ambient, .classical, .country]
+        Networking.getGenres(listGenre: order) { [weak self] data, error in
+            if let error = error {
+                print(error)
+            } else {
+                guard let data = data else {
+                    return
+                }
+                self?.listGenre = data
+                self?.listGenre.sort(by: { $0.genre.priority < $1.genre.priority })
+                self?.tableView.reloadData()
+                loading.stop()
+            }
+        }
     }
     
     func setTableView() {
         tableView.register(cellType: HomeTableViewCell.self)
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = CGFloat(Constant.estimateRowHeight)
     }
     
     func setTitleView() {
@@ -37,28 +62,25 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Constant.numberOfCellTable
+        return listGenre.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: HomeTableViewCell = tableView.dequeueReusableCell(for: indexPath)
-        cell.setContentForCell(viewController: self)
+        cell.setContentForCell(viewController: self, genre: listGenre[indexPath.row], tag: indexPath.row)
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.view.frame.size.height / CGFloat(Constant.numberOfCellTableInOneScreen)
     }
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Constant.numberOfCellCollection
+        return listGenre[collectionView.tag].collection.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: HomeCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-        cell.setContentForCell()
+        let genre = listGenre[collectionView.tag]
+        cell.setContentForCell(track: genre.collection[indexPath.item])
         return cell
     }
     

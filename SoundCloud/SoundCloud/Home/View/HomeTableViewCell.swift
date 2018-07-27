@@ -9,7 +9,7 @@
 import UIKit
 import Reusable
 
-class HomeTableViewCell: UITableViewCell, NibReusable {
+final class HomeTableViewCell: UITableViewCell, NibReusable {
     private struct Identifier {
         static let homeCollectionViewCell = "HomeCollectionViewCell"
     }
@@ -22,9 +22,11 @@ class HomeTableViewCell: UITableViewCell, NibReusable {
         super.awakeFromNib()
     }
 
-    func setContentForCell(viewController: UIViewController) {
-        self.collectionView.delegate = viewController as? UICollectionViewDelegate
-        self.collectionView.dataSource = viewController as? UICollectionViewDataSource
-        self.collectionView.register(cellType: HomeCollectionViewCell.self)
+    func setContentForCell(viewController: UIViewController, genre: Genre, tag: Int) {
+        collectionView.delegate = viewController as? UICollectionViewDelegate
+        collectionView.dataSource = viewController as? UICollectionViewDataSource
+        collectionView.register(cellType: HomeCollectionViewCell.self)
+        collectionView.tag = tag
+        titleLabel.text = genre.name
     }
 }
