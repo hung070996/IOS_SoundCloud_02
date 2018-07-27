@@ -10,6 +10,10 @@ import UIKit
 import Reusable
 
 class ResultSearchView: UIView, NibOwnerLoadable {
+    private struct Constant {
+        static let result = " results"
+    }
+    
     @IBOutlet private var resultTableView: UITableView!
     @IBOutlet private var numberResultLabel: UILabel!
     required init?(coder aDecoder: NSCoder) {
@@ -19,6 +23,14 @@ class ResultSearchView: UIView, NibOwnerLoadable {
     
     func getTable() -> UITableView {
         return self.resultTableView
+    }
+    
+    func reloadTable() {
+        resultTableView.reloadData()
+    }
+    
+    func setNumberResult(number: Int) {
+        numberResultLabel.text = String(number) + Constant.result
     }
     
     func setContentTableview (viewController: UIViewController) {

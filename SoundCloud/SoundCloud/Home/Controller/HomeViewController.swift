@@ -35,15 +35,21 @@ final class HomeViewController: UIViewController {
         order = [.allMusic, .allAudio, .alternativeRock, .ambient, .classical, .country]
         Networking.getGenres(listGenre: order) { [weak self] data, error in
             if let error = error {
-                print(error)
+                if let message = error.errorMessage {
+                    DispatchQueue.main.async {
+                        self?.showErrorAlert(message: message)
+                    }
+                }
             } else {
                 guard let data = data else {
                     return
                 }
-                self?.listGenre = data
-                self?.listGenre.sort(by: { $0.genre.priority < $1.genre.priority })
-                self?.tableView.reloadData()
-                loading.stop()
+                DispatchQueue.main.async {
+                    self?.listGenre = data
+                    self?.listGenre.sort(by: { $0.genre.rawValue < $1.genre.rawValue })
+                    self?.tableView.reloadData()
+                    loading.stop()
+                }
             }
         }
     }

@@ -63,8 +63,8 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
         guard let header = view as? UITableViewHeaderFooterView else {
             return
         }
-        header.textLabel?.font = UIFont(name: Constant.font, size: CGFloat(Constant.fontSize))!
-        header.textLabel?.textColor = UIColor.black
+        header.textLabel?.font = UIFont(name: Constant.font, size: CGFloat(Constant.fontSize))
+        header.textLabel?.textColor = .black
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

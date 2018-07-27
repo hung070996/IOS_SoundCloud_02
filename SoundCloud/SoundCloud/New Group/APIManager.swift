@@ -16,8 +16,17 @@ final class APIManager {
     
     private init() {}
     
+    func cancelRequest() {
+        alamofireManager.session.getTasksWithCompletionHandler { (sessionDataTask, uploadData, downloadData) in
+            sessionDataTask.forEach {
+                $0.cancel()
+            }
+        }
+    }
+    
     func request<T: Mappable>(input: BaseRequest, completion: @escaping (_ value: T?, _ error: BaseError?) -> Void) {
-        alamofireManager.request(GeneralAPIRouter.getTrack(request: input)).validate(statusCode: 200..<500)
+        let router = input is GenreRequest ? GeneralAPIRouter.getGenre(request: input) : GeneralAPIRouter.getSearch(request: input)
+        alamofireManager.request(router).validate(statusCode: 200..<500)
             .responseJSON { (response) in
                 switch response.result {
                 case .success(let value):

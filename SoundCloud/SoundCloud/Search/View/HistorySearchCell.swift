@@ -10,12 +10,13 @@ import UIKit
 import Reusable
 
 class HistorySearchCell: UITableViewCell, NibReusable {
-
+    @IBOutlet private var labelHistory: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    func setContentForCell(viewController: UIViewController) {
-        
+    func setContentForCell(viewController: UIViewController, label: String) {
+        labelHistory.text = label
     }
 }

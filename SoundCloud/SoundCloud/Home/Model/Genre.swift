@@ -28,21 +28,29 @@ class Genre: Mappable {
     }
     
     func mapping(map: Map) {
-        genre <- map["genre"]
-        collection <- map["collection"]
-        switch genre {
-        case .allMusic:
+        name <- map["genre"]
+        switch name {
+        case GenreType.allMusic.getString:
+            genre = GenreType.allMusic
             name = Constant.allMusic
-        case .allAudio:
+        case GenreType.allAudio.getString:
+            genre = GenreType.allAudio
             name = Constant.allAudio
-        case .alternativeRock:
+        case GenreType.alternativeRock.getString:
+            genre = GenreType.alternativeRock
             name = Constant.alternativerock
-        case .ambient:
+        case GenreType.ambient.getString:
+            genre = GenreType.ambient
             name = Constant.ambient
-        case .classical:
+        case GenreType.classical.getString:
+            genre = GenreType.classical
             name = Constant.classical
-        case .country:
+        case GenreType.country.getString:
+            genre = GenreType.country
             name = Constant.country
+        default:
+            break
         }
+        collection <- map["collection"]
     }
 }
