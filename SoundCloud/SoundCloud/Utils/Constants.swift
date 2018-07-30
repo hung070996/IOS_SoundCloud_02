@@ -10,6 +10,7 @@ import Foundation
 
 struct BaseUrl {
     static let general = "https://api-v2.soundcloud.com/charts"
+    static let search = "https://api-v2.soundcloud.com/search/tracks"
 }
 
 struct APIParameterKey {
@@ -17,4 +18,5 @@ struct APIParameterKey {
     static let genre = "genre"
     static let client_id = "client_id"
     static let limit = "limit"
+    static let keySearch = "q"
 }

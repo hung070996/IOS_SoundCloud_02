@@ -44,6 +44,9 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="labelHistory" destination="5x1-f2-pXU" id="OAi-uM-abW"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

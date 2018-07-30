@@ -13,6 +13,8 @@ import SpringIndicator
 extension UIViewController {
     private struct Constant {
         static let sizeLoading: CGFloat = 50
+        static let error = "Error"
+        static let ok = "OK"
     }
     
     var indicator: SpringIndicator {
@@ -23,5 +25,11 @@ extension UIViewController {
         view.addSubview(indicator)
         indicator.start()
         return indicator
+    }
+    
+    func showErrorAlert(message: String) {
+        let alert = UIAlertController(title: Constant.error, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: Constant.ok, style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }

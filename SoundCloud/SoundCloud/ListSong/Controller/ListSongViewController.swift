@@ -43,7 +43,7 @@ extension ListSongViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ResultSearchCell = tableView.dequeueReusableCell(for: indexPath)
-        cell.setContentForCell(viewController: self)
+//        cell.setContentForCell(viewController: self)
         cell.setShowDownloadButton(isShow: false)
         return cell
     }

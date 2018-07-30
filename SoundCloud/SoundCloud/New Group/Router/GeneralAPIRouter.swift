@@ -11,7 +11,8 @@ import Alamofire
 
 enum GeneralAPIRouter: BaseAPIRouter {
     
-    case getTrack(request: BaseRequest)
+    case getGenre(request: BaseRequest)
+    case getSearch(request: BaseRequest)
     
     var headers: HTTPHeaders {
         switch self {
@@ -29,7 +30,9 @@ enum GeneralAPIRouter: BaseAPIRouter {
     
     var parameters: Parameters? {
         switch self {
-        case let .getTrack(request):
+        case let .getGenre(request):
+            return request.getParameter()
+        case let .getSearch(request):
             return request.getParameter()
         }
     }
@@ -43,8 +46,10 @@ enum GeneralAPIRouter: BaseAPIRouter {
     
     var path: String {
         switch self {
-        case .getTrack(_):
+        case .getGenre(_):
             return BaseUrl.general
+        case .getSearch(_):
+            return BaseUrl.search
         }
     }
     

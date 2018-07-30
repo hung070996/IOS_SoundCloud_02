@@ -8,8 +8,13 @@
 
 import UIKit
 import Reusable
+import Kingfisher
 
 class ResultSearchCell: UITableViewCell, NibReusable {
+    private struct Constant {
+        static let placeholder = "Icon_Playlist_Holder"
+    }
+    
     @IBOutlet private var nameArtistLabel: UILabel!
     @IBOutlet private var nameSongLabel: UILabel!
     @IBOutlet private var imageSong: UIImageView!
@@ -20,13 +25,19 @@ class ResultSearchCell: UITableViewCell, NibReusable {
         super.awakeFromNib()
     }
     
-    func setContentForCell(viewController: UIViewController) {
+    func setContentForCell(viewController: UIViewController, track: TrackSearch) {
         addPlaylistButton.muttating(type: ImageButtonType.addToPlaylist)
         addPlaylistButton.setTintColorOfImage(color: .black)
         addPlaylistButton.delegate = viewController as? ImageButtonDelegate
         downloadButton.muttating(type: ImageButtonType.download)
         downloadButton.setTintColorOfImage(color: .black)
         downloadButton.delegate = viewController as? ImageButtonDelegate
+        nameSongLabel.text = track.title
+        nameArtistLabel.text = track.genre
+        let urlString = track.urlImage
+        let url = URL(string: urlString)
+        let placeholder = UIImage(named: Constant.placeholder)
+        imageSong.kf.setImage(with: url, placeholder: placeholder)
     }
     
     func setShowDownloadButton(isShow: Bool) {

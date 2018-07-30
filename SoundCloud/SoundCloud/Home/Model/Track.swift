@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-final class Track: Mappable {
+class Track: Mappable {
     var id = 0
     var name = ""
     var genre = ""
@@ -27,6 +27,7 @@ final class Track: Mappable {
     var uri = ""
     var urn = ""
     var waveformUrl = ""
+    var artist = ""
     
     required init?(map: Map) {}
     
@@ -48,5 +49,6 @@ final class Track: Mappable {
         uri <- map["track.uri"]
         urn <- map["track.urn"]
         waveformUrl <- map["track.waveform_url"]
+        artist <- map["track.publisher_metadata.artist"]
     }
 }

@@ -15,6 +15,8 @@ protocol SuggestionSearchViewDelegate: class {
 
 class SuggestionSearchView: UIView, NibOwnerLoadable {
     weak var delegate: SuggestionSearchViewDelegate?
+    
+    @IBOutlet private var hotButtons: [UIButton]!
     @IBOutlet private var historyTableView: UITableView!
     
     required init?(coder aDecoder: NSCoder) {
@@ -26,10 +28,17 @@ class SuggestionSearchView: UIView, NibOwnerLoadable {
         return self.historyTableView
     }
     
-    func setContentTableView(viewController: UIViewController) {
+    func reloadTable() {
+        historyTableView.reloadData()
+    }
+    
+    func setContentView(viewController: UIViewController) {
         historyTableView.register(cellType: HistorySearchCell.self)
         historyTableView.delegate = viewController as? UITableViewDelegate
         historyTableView.dataSource = viewController as? UITableViewDataSource
+        for button in hotButtons {
+            button.getRoundOnHeight()
+        }
     }
     
     @IBAction func clickHotButton(_ sender: UIButton) {
