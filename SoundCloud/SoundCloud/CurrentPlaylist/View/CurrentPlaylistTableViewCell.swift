@@ -14,9 +14,9 @@ class CurrentPlaylistTableViewCell: UITableViewCell, NibReusable {
     @IBOutlet private weak var lblNameOfSong: UILabel!
     @IBOutlet private weak var lblSinger: UILabel!
     
-    func fillData(index: Int, song: String, singer: String) {
+    func fillData(index: Int, track: Track) {
         lblIndex.text = String(index)
-        lblNameOfSong.text = song
-        lblSinger.text = singer
+        lblNameOfSong.text = track.title
+        lblSinger.text = track.artist
     }
 }

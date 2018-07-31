@@ -22,6 +22,7 @@ enum IdentifierType: String {
     case rotationImageView = "AnimationRotationViewController"
     case currentPlaylistPlaying = "CurrentPlaylistViewController"
     case songPlayingCollectionCell = "SongPlayingCollectionViewCell"
+    case customTabbar = "CustomTabbarViewController"
 }
 
 class Utils {

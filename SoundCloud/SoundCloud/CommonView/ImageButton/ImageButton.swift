@@ -142,6 +142,11 @@ class ImageButton: UIView, NibOwnerLoadable {
         setTintColorOfImage(color: self.type.tintColor)
     }
     
+    func setLoopButtonDisplay(loopType: LoopType) {
+        self.imvIcon.image = loopType.image.withRenderingMode(.alwaysTemplate)
+        setTintColorOfImage(color: loopType.tintColor)
+    }
+    
     func getType() -> ImageButtonType {
         return type
     }

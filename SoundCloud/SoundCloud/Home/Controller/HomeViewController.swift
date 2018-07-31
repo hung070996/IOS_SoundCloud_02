@@ -93,4 +93,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.width / CGFloat(Constant.numberOfCellCollectionInOneScreen), height: collectionView.frame.size.height)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let track = listGenre[collectionView.tag].collection[indexPath.item]
+        PlaySongManager.shared.temproraryTrack = track
+        NotificationCenter.default.post(name: NSNotification.Name.init("PlaySong"), object: nil)
+    }
 }

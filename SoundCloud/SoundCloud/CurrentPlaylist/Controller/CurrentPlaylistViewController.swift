@@ -11,8 +11,7 @@ import Reusable
 
 class CurrentPlaylistViewController: UIViewController {
     @IBOutlet private weak var tblListCurrentSong: UITableView!
-    var dataArray = ["template data"]
-    let templateData: (song: String, singer: String) = ("Girls Like You", "Adam Levine")
+    var dataArray = [Track]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,13 +19,17 @@ class CurrentPlaylistViewController: UIViewController {
         registerCell()
     }
     
-    func setTableDisplay() {
+    func reloadPlaylist() {
+        tblListCurrentSong?.reloadData()
+    }
+    
+    private func setTableDisplay() {
         tblListCurrentSong.estimatedRowHeight = 70
         tblListCurrentSong.rowHeight = UITableViewAutomaticDimension
         tblListCurrentSong.separatorStyle = .none
     }
     
-    func registerCell() {
+    private func registerCell() {
         tblListCurrentSong.register(cellType: CurrentPlaylistTableViewCell.self)
     }
 }
@@ -38,7 +41,7 @@ extension CurrentPlaylistViewController: UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as CurrentPlaylistTableViewCell
-        cell.fillData(index: (indexPath.row + 1), song: templateData.song, singer: templateData.singer)
+        cell.fillData(index: indexPath.row + 1, track: dataArray[indexPath.row])
         return cell
     }
 }

@@ -334,7 +334,9 @@
                         <outlet property="ibPlayPrevious" destination="2BO-Z2-Iuk" id="Sfu-zu-B0t"/>
                         <outlet property="ibShare" destination="wJb-kZ-Lu3" id="eVB-yy-sjR"/>
                         <outlet property="ibShuffle" destination="mZe-8G-cli" id="Yji-hY-iiF"/>
+                        <outlet property="singerLabel" destination="vcU-6l-0mf" id="0kQ-9P-b9F"/>
                         <outlet property="sliderCountTime" destination="lj4-pQ-giK" id="Gaj-Xw-g4i"/>
+                        <outlet property="songNameLabel" destination="scZ-ld-tzV" id="WJe-EM-t3l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NU5-f5-0L6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -353,8 +355,8 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" red="0.54117647059999996" green="0.4039215686" blue="0.74117647060000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="HKm-6t-0W4" id="2hq-je-YB7"/>
-                                    <outlet property="delegate" destination="HKm-6t-0W4" id="rZs-TH-ZZS"/>
+                                    <outlet property="dataSource" destination="HKm-6t-0W4" id="f4S-2J-HY4"/>
+                                    <outlet property="delegate" destination="HKm-6t-0W4" id="TuJ-O4-Nv8"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -368,7 +370,7 @@
                         <viewLayoutGuide key="safeArea" id="rXp-Ur-Xv8"/>
                     </view>
                     <connections>
-                        <outlet property="tblListCurrentSong" destination="DvG-8h-cMf" id="LtO-we-uyi"/>
+                        <outlet property="tblListCurrentSong" destination="DvG-8h-cMf" id="nKq-cf-vrO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BDY-eS-7hE" userLabel="First Responder" sceneMemberID="firstResponder"/>
