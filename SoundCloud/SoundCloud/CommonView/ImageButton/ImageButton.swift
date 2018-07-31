@@ -30,6 +30,7 @@ enum ImageButtonType {
     case shuffle
     case loop
     case playlist
+    case pause
     
     var image: UIImage {
         switch self {
@@ -66,11 +67,13 @@ enum ImageButtonType {
         case .edit:
             return #imageLiteral(resourceName: "Icon_Edit")
         case .back:
-            return #imageLiteral(resourceName: "Icon_Minimize_Down")
+            return #imageLiteral(resourceName: "Icon_Back")
         case .playlist:
             return #imageLiteral(resourceName: "Icon_Playlist_Holder")
-        default:
-            return #imageLiteral(resourceName: "Icon_Playlist_Holder")
+        case .pause:
+            return #imageLiteral(resourceName: "Icon_Pause")
+        case .exit:
+            return #imageLiteral(resourceName: "Icon_Exit")
         }
     }
     
@@ -87,7 +90,7 @@ enum ImageButtonType {
     
     var scale: CGFloat {
         switch self {
-        case .homePage, .search, .library, .play, .playNext, .playPrevious:
+        case .homePage, .search, .library, .play, .playNext, .playPrevious, .pause:
             return 2/3
         default:
             return 1/2
@@ -138,8 +141,12 @@ class ImageButton: UIView, NibOwnerLoadable {
         setMultipleOfImage(scale: self.type.scale)
         setTintColorOfImage(color: self.type.tintColor)
     }
+    
+    func getType() -> ImageButtonType {
+        return type
+    }
 
-    @IBAction func imageButtonClicked(_ sender: Any) {
+    @IBAction private func imageButtonClicked(_ sender: Any) {
         if let delegate = self.delegate{
             delegate.handleImageButtonClicked(type: self.type)
         }
