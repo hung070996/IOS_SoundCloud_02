@@ -11,4 +11,5 @@ target 'SoundCloud' do
 	pod 'ObjectMapper'
 	pod 'Kingfisher'
 	pod 'SpringIndicator'
+	pod 'UICircularProgressRing'
 end

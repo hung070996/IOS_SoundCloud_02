@@ -53,6 +53,28 @@
                             <constraint firstAttribute="width" secondItem="DZf-Vb-0UN" secondAttribute="height" id="Io1-i0-gdL"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wK6-hA-fad" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
+                        <rect key="frame" x="288.5" y="36.5" width="25.5" height="25"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="outerRingWidth">
+                                <real key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="innerRingWidth">
+                                <real key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="ibRingStyle">
+                                <integer key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="outerRingColor">
+                                <color key="value" red="1" green="0.69019607839999997" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="innerRingColor">
+                                <color key="value" red="0.59215686270000001" green="0.42745098040000001" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="shouldShowValueText" value="NO"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BVY-xW-VW6" customClass="ImageButton" customModule="SoundCloud" customModuleProvider="target">
                         <rect key="frame" x="282" y="30" width="38.5" height="38"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -65,14 +87,18 @@
                     <constraint firstItem="xNy-AR-xzW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="0a0-HQ-7eJ"/>
                     <constraint firstItem="wq7-5C-IIp" firstAttribute="top" secondItem="xNy-AR-xzW" secondAttribute="top" id="3BE-Ih-hoe"/>
                     <constraint firstItem="BVY-xW-VW6" firstAttribute="width" secondItem="DZf-Vb-0UN" secondAttribute="width" id="3Rw-cg-WGU"/>
+                    <constraint firstItem="wK6-hA-fad" firstAttribute="width" secondItem="BVY-xW-VW6" secondAttribute="width" multiplier="2/3" id="7lu-OY-nsp"/>
                     <constraint firstItem="BVY-xW-VW6" firstAttribute="centerY" secondItem="DZf-Vb-0UN" secondAttribute="centerY" id="8hE-4Y-ZcS"/>
                     <constraint firstItem="DZf-Vb-0UN" firstAttribute="leading" secondItem="BVY-xW-VW6" secondAttribute="trailing" constant="10" id="By8-kq-gdr"/>
                     <constraint firstItem="DZf-Vb-0UN" firstAttribute="height" secondItem="xNy-AR-xzW" secondAttribute="height" multiplier="3/5" id="Ct4-db-nzS"/>
                     <constraint firstItem="wq7-5C-IIp" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="DkV-YR-Lix"/>
                     <constraint firstItem="BVY-xW-VW6" firstAttribute="leading" secondItem="wq7-5C-IIp" secondAttribute="trailing" constant="10" id="MfG-OK-M8A"/>
+                    <constraint firstItem="wK6-hA-fad" firstAttribute="centerX" secondItem="BVY-xW-VW6" secondAttribute="centerX" id="TWF-4G-xLs"/>
+                    <constraint firstItem="wK6-hA-fad" firstAttribute="height" secondItem="BVY-xW-VW6" secondAttribute="height" multiplier="2/3" id="UG3-br-CuU"/>
                     <constraint firstItem="BVY-xW-VW6" firstAttribute="width" secondItem="BVY-xW-VW6" secondAttribute="height" id="YTK-OG-9dL"/>
                     <constraint firstItem="xNy-AR-xzW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="fUS-QQ-KCI"/>
                     <constraint firstItem="wq7-5C-IIp" firstAttribute="leading" secondItem="xNy-AR-xzW" secondAttribute="trailing" constant="10" id="hd5-kX-zMy"/>
+                    <constraint firstItem="wK6-hA-fad" firstAttribute="centerY" secondItem="BVY-xW-VW6" secondAttribute="centerY" id="jh6-pa-bLC"/>
                     <constraint firstItem="DZf-Vb-0UN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="kKa-0T-9ZS"/>
                     <constraint firstItem="xNy-AR-xzW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="uz0-SO-sfA"/>
                     <constraint firstItem="DZf-Vb-0UN" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="10" id="vnb-Cn-W41"/>
@@ -86,6 +112,7 @@
                 <outlet property="imageSong" destination="xNy-AR-xzW" id="d8U-l0-Ryu"/>
                 <outlet property="nameArtistLabel" destination="TWp-X0-CqD" id="l4j-Hb-Ojt"/>
                 <outlet property="nameSongLabel" destination="GCR-Lb-bKv" id="1EO-yQ-5Ej"/>
+                <outlet property="progress" destination="wK6-hA-fad" id="Ft1-ho-Xoc"/>
             </connections>
             <point key="canvasLocation" x="32.5" y="119"/>
         </tableViewCell>

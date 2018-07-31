@@ -11,6 +11,10 @@ import Foundation
 struct BaseUrl {
     static let general = "https://api-v2.soundcloud.com/charts"
     static let search = "https://api-v2.soundcloud.com/search/tracks"
+    
+    static func baseUrl(track: Track) -> String {
+        return "http://api.soundcloud.com/tracks/\(track.id)/stream"
+    }
 }
 
 struct APIParameterKey {

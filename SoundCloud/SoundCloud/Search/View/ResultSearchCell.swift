@@ -9,6 +9,11 @@
 import UIKit
 import Reusable
 import Kingfisher
+import UICircularProgressRing
+
+protocol ResultSearchCellDelegate: class {
+    func clickImageButton(type: ImageButtonType, cell: ResultSearchCell)
+}
 
 class ResultSearchCell: UITableViewCell, NibReusable {
     private struct Constant {
@@ -20,18 +25,21 @@ class ResultSearchCell: UITableViewCell, NibReusable {
     @IBOutlet private var imageSong: UIImageView!
     @IBOutlet private var addPlaylistButton: ImageButton!
     @IBOutlet private var downloadButton: ImageButton!
+    @IBOutlet private var progress: UICircularProgressRing!
+    weak var delegate: ResultSearchCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
     func setContentForCell(viewController: UIViewController, track: TrackSearch) {
+        delegate = viewController as? ResultSearchCellDelegate
         addPlaylistButton.muttating(type: ImageButtonType.addToPlaylist)
         addPlaylistButton.setTintColorOfImage(color: .black)
-        addPlaylistButton.delegate = viewController as? ImageButtonDelegate
+        addPlaylistButton.delegate = self
         downloadButton.muttating(type: ImageButtonType.download)
         downloadButton.setTintColorOfImage(color: .black)
-        downloadButton.delegate = viewController as? ImageButtonDelegate
+        downloadButton.delegate = self
         nameSongLabel.text = track.title
         nameArtistLabel.text = track.genre
         let urlString = track.urlImage
@@ -42,5 +50,19 @@ class ResultSearchCell: UITableViewCell, NibReusable {
     
     func setShowDownloadButton(isShow: Bool) {
         downloadButton.isHidden = !isShow
+    }
+    
+    func setShowProgressButton(isShow: Bool) {
+        progress.isHidden = !isShow
+    }
+    
+    func setProgress(value: CGFloat) {
+        progress.startProgress(to: value, duration: 0)
+    }
+}
+
+extension ResultSearchCell: ImageButtonDelegate {
+    func handleImageButtonClicked(type: ImageButtonType) {
+        delegate?.clickImageButton(type: type, cell: self)
     }
 }
