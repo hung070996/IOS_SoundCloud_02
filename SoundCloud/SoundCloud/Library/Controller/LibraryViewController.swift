@@ -10,23 +10,20 @@ import UIKit
 
 class LibraryViewController: UIViewController {
     private struct Constant {
-        static let numberOfCellInSection1 = 1
-        static let numberOfCellInSection2 = 2
-        static let numberOfSection = 2
+        static let images = ["Icon_Download", "Icon_Love", "Icon_Playlist"]
+        static let titles = ["Download", "Favorite", "Playlist"]
         static let title = "Library"
-        static let titleNone = ""
-        static let titleOffline = "OFFLINE"
-        static let font = "Futura"
-        static let fontSize = 17
-        static let heightForFooter: CGFloat = 50
-        static let heightForHeader: CGFloat = 30
+        static let indexPlaylist = 2
     }
+    
+    private var listPlaylist = [Playlist]()
 
     @IBOutlet private var titleView: TitleView!
     @IBOutlet private var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        listPlaylist = DatabaseManager.shared.getListPlaylist()
         setTableView()
         setTitleView()
     }
@@ -43,34 +40,22 @@ class LibraryViewController: UIViewController {
 
 extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? Constant.numberOfCellInSection1 : Constant.numberOfCellInSection2
+        return Constant.titles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: LibraryCell = tableView.dequeueReusableCell(for: indexPath)
+        if indexPath.row < Constant.indexPlaylist {
+            cell.setContentForCell(img: Constant.images[indexPath.row], title: Constant.titles[indexPath.row], number: listPlaylist[indexPath.row].listTrack.count)
+        } else {
+            cell.setContentForCell(img: Constant.images[indexPath.row], title: Constant.titles[indexPath.row], number: listPlaylist.count - Constant.indexPlaylist)
+        }
         return cell
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return Constant.numberOfSection
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return section == 0 ? Constant.titleNone : Constant.titleOffline
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        guard let header = view as? UITableViewHeaderFooterView else {
-            return
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row != Constant.indexPlaylist {
+            
         }
-        header.textLabel?.font = UIFont(name: Constant.font, size: CGFloat(Constant.fontSize))
-        header.textLabel?.textColor = .black
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let view = UIView()
-        view.backgroundColor = tableView.backgroundColor
-        view.frame.size.height = Constant.heightForFooter
-        return view
     }
 }

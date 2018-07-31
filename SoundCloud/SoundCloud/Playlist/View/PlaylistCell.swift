@@ -12,6 +12,8 @@ import Reusable
 class PlaylistCell: UITableViewCell, NibReusable {
     private struct Constant {
         static let cornerRadius = 10
+        static let song = " song"
+        static let songs = " songs"
     }
     
     @IBOutlet private var editButton: ImageButton!
@@ -24,7 +26,7 @@ class PlaylistCell: UITableViewCell, NibReusable {
         super.awakeFromNib()
     }
     
-    func setContentForCell(viewController: UIViewController) {
+    func setContentForCell(viewController: UIViewController, playlist: Playlist) {
         editButton.muttating(type: ImageButtonType.edit)
         editButton.setTintColorOfImage(color: .black)
         editButton.delegate = viewController as? ImageButtonDelegate
@@ -34,5 +36,8 @@ class PlaylistCell: UITableViewCell, NibReusable {
         imagePlaylist.muttating(type: ImageButtonType.playlist)
         imagePlaylist.setTintColorOfImage(color: .white)
         imagePlaylist.layer.cornerRadius = CGFloat(Constant.cornerRadius)
+        self.nameLabel.text = playlist.name
+        self.numberLabel.text = playlist.listTrack.count < 2 ? String(playlist.listTrack.count) + Constant.song
+            : String(playlist.listTrack.count) + Constant.songs
     }
 }

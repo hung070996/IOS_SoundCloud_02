@@ -32,7 +32,7 @@ class ResultSearchCell: UITableViewCell, NibReusable {
         super.awakeFromNib()
     }
     
-    func setContentForCell(viewController: UIViewController, track: TrackSearch) {
+    func setContentForCell(viewController: UIViewController, track: Track) {
         delegate = viewController as? ResultSearchCellDelegate
         addPlaylistButton.muttating(type: ImageButtonType.addToPlaylist)
         addPlaylistButton.setTintColorOfImage(color: .black)
@@ -46,6 +46,11 @@ class ResultSearchCell: UITableViewCell, NibReusable {
         let url = URL(string: urlString)
         let placeholder = UIImage(named: Constant.placeholder)
         imageSong.kf.setImage(with: url, placeholder: placeholder)
+    }
+    
+    func setDownloadedButton() {
+        downloadButton.muttating(type: .downloaded)
+        downloadButton.setTintColorOfImage(color: .black)
     }
     
     func setShowDownloadButton(isShow: Bool) {

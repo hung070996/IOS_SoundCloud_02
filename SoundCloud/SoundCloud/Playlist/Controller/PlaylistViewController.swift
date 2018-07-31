@@ -11,18 +11,28 @@ import UIKit
 class PlaylistViewController: UIViewController {
     private struct Constant {
         static let title = "Playlist"
-        static let numberOfPlaylist = 3
-        static let numberOfCellInOneScreen = 10
         static let estimatedRowHeight = 100
+        static let except = ["Download", "Favorite"]
+        static let addNewPlaylist = "Add new playlist"
+        static let inputName = "Input name"
+        static let add = "Add"
+        static let alreadyHave = "This name have already existed"
     }
 
     @IBOutlet private var titleView: TitleView!
     @IBOutlet private var tableView: UITableView!
     
+    private var listPlaylist = [Playlist]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        getData()
         setTableView()
         setTitleView()
+    }
+    
+    func getData() {
+        listPlaylist = DatabaseManager.shared.getListPlaylistCustom()
     }
     
     func setTableView() {
@@ -37,23 +47,41 @@ class PlaylistViewController: UIViewController {
     }
     
     @IBAction func clickAddPlaylist(_ sender: Any) {
+        let alert = UIAlertController(title: Constant.addNewPlaylist, message: Constant.inputName, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addTextField(configurationHandler: nil)
+        alert.addAction(UIAlertAction(title: Constant.add, style: .default, handler: { (action) in
+            if let text = alert.textFields?.first?.text {
+                if DatabaseManager.shared.checkExistPlaylist(name: text) {
+                    self.showErrorAlert(message: Constant.alreadyHave)
+                } else {
+                    if DatabaseManager.shared.addPlaylist(name: text) {
+                        print("Success")
+                        self.getData()
+                        self.tableView.reloadData()
+                    } else {
+                        print("Error")
+                    }
+                }
+            }
+        }))
+        present(alert, animated: true, completion: nil)
     }
 }
 
 extension PlaylistViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Constant.numberOfPlaylist
+        return listPlaylist.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PlaylistCell = tableView.dequeueReusableCell(for: indexPath)
-        cell.setContentForCell(viewController: self)
+        cell.setContentForCell(viewController: self, playlist: listPlaylist[indexPath.row])
         return cell
     }
 }
 
 extension PlaylistViewController: ImageButtonDelegate {
     func handleImageButtonClicked(type: ImageButtonType) {
-        print(type)
+        
     }
 }

@@ -13,10 +13,12 @@ import Foundation
 class SearchViewController: UIViewController {
     private struct Constant {
         static let history = "history"
+        static let download = "Download"
     }
     
     private var listTrack = [TrackSearch]()
     private var listHistory = [String]()
+    private var listDownloaded = [Track]()
     
     @IBOutlet private var searchBar: UISearchBar!
     @IBOutlet private var suggestionSearchView: SuggestionSearchView!
@@ -24,14 +26,15 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getDataHistory()
+        getData()
         resultSearchView.setContentTableview(viewController: self)
         suggestionSearchView.setContentView(viewController: self)
         suggestionSearchView.delegate = self
     }
     
-    func getDataHistory() {
+    func getData() {
         listHistory = UserDefaults.standard.stringArray(forKey: Constant.history) ?? [String]()
+        listDownloaded = DatabaseManager.shared.getListTrackOfPlaylist(idPlaylist: DatabaseManager.shared.getIDPlaylistByName(name: Constant.download))
     }
 }
 
@@ -50,6 +53,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             cell.setContentForCell(viewController: self, track: listTrack[indexPath.row])
             cell.setShowDownloadButton(isShow: listTrack[indexPath.row].downloadable)
             cell.setShowProgressButton(isShow: listTrack[indexPath.row].downloadable)
+            for t in listDownloaded {
+                if t.id == listTrack[indexPath.row].id {
+                    cell.setDownloadedButton()
+                    break
+                }
+            }
             return cell
         }
     }
@@ -70,14 +79,41 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension SearchViewController: ResultSearchCellDelegate {
     func clickImageButton(type: ImageButtonType, cell: ResultSearchCell) {
-        cell.setShowDownloadButton(isShow: false)
-        if let index = resultSearchView.getTable().indexPath(for: cell) {
+        if type == .download {
+            cell.setShowDownloadButton(isShow: false)
+            guard let index = resultSearchView.getTable().indexPath(for: cell) else {
+                return
+            }
             let track = listTrack[index.row]
-            DownloadManager.downloadTrack(track: track, progressDownload: { (progress) in
+            DownloadManager.downloadTrack(track: track, progressDownload: { [weak self] progress in
+                guard let `self` = self else {
+                    return
+                }
                 cell.setProgress(value: self.getPercentage(progress: progress))
-            }) { (response) in
-                print(response.response?.status)
-                print(self.listFilesFromDocumentsFolder())
+            }) { (downloadSuccess, error) in
+                if downloadSuccess {
+                    if !DatabaseManager.shared.checkExistTrack(id: track.id) {
+                        if DatabaseManager.shared.addTrack(track: track) {
+                            print("Add track to database success")
+                        }
+                    } else {
+                        print("Track is already in database")
+                    }
+                    if DatabaseManager.shared.addTrackToPlaylist(track: track, idPlaylist: DatabaseManager.shared.getIDPlaylistByName(name: Constant.download)) {
+                        print("Add to download")
+                    }
+                    DispatchQueue.main.async {
+                        cell.setShowProgressButton(isShow: false)
+                        cell.setDownloadedButton()
+                        cell.setShowDownloadButton(isShow: true)
+                        DownloadManager.checkIsDownloading(completion: { (isDownloading) in
+                            if !isDownloading {
+                                self.getData()
+                                self.resultSearchView.reloadTable()
+                            }
+                        })
+                    }
+                }
             }
         }
     }
@@ -92,7 +128,6 @@ extension SearchViewController: ResultSearchCellDelegate {
         return CGFloat(progress.completedUnitCount * 100 / progress.totalUnitCount)
     }
 }
-
 
 extension SearchViewController: SuggestionSearchViewDelegate {
     func clickHotButton(title: String?) {

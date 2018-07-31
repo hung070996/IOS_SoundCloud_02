@@ -16,7 +16,7 @@ class TrackSearch: Track {
         genre <- map["genre"]
         urlImage <- map["artwork_url"]
         createdAt <- map["created_at"]
-        description <- map["description"]
+        des <- map["description"]
         downloadable <- map["downloadable"]
         downloadUrl <- map["download_url"]
         duration <- map["duration"]
