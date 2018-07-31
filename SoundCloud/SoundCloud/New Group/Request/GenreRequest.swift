@@ -9,31 +9,6 @@
 import UIKit
 import Alamofire
 
-enum GenreType: Int {
-    case allMusic = 0, allAudio, alternativeRock, ambient, classical, country
-    
-    var encodedValue: String {
-        return self.getString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
-    }
-    
-    var getString: String {
-        switch self {
-        case .allMusic:
-            return "soundcloud:genres:all-music"
-        case .allAudio:
-            return "soundcloud:genres:all-audio"
-        case .alternativeRock:
-            return "soundcloud:genres:alternativerock"
-        case .ambient:
-            return "soundcloud:genres:ambient"
-        case .classical:
-            return "soundcloud:genres:classical"
-        case .country:
-            return "soundcloud:genres:country"
-        }
-    }
-}
-
 class GenreRequest: BaseRequest {
     private var kind: String
     private var genre: GenreType

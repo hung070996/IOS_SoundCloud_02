@@ -8,6 +8,7 @@ PODS:
   - Reusable/Storyboard (4.0.2)
   - Reusable/View (4.0.2)
   - SpringIndicator (3.0.0)
+  - UICircularProgressRing (3.0.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -15,6 +16,7 @@ DEPENDENCIES:
   - ObjectMapper
   - Reusable
   - SpringIndicator
+  - UICircularProgressRing
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -23,6 +25,7 @@ SPEC REPOS:
     - ObjectMapper
     - Reusable
     - SpringIndicator
+    - UICircularProgressRing
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
@@ -30,7 +33,8 @@ SPEC CHECKSUMS:
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
   Reusable: 584a5629747c52e0f6a77841b400dc2643f6fa0f
   SpringIndicator: 08d815e8a154dee7b786d82b98c43cc9028a769f
+  UICircularProgressRing: 3b472692ffca84060fd444ea5c0b387161067c54
 
-PODFILE CHECKSUM: c78c48932c230938f31b4bd5231d212bec6d40df
+PODFILE CHECKSUM: 5b569aa91d5cf14e88f92baff894a9c501dcfa79
 
 COCOAPODS: 1.5.3

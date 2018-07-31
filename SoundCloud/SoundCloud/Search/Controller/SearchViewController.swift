@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import Foundation
 
 class SearchViewController: UIViewController {
     private struct Constant {
@@ -46,6 +48,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             let cell: ResultSearchCell = tableView.dequeueReusableCell(for: indexPath)
             cell.setContentForCell(viewController: self, track: listTrack[indexPath.row])
+            cell.setShowDownloadButton(isShow: listTrack[indexPath.row].downloadable)
+            cell.setShowProgressButton(isShow: listTrack[indexPath.row].downloadable)
             return cell
         }
     }
@@ -64,15 +68,35 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension SearchViewController: ImageButtonDelegate {
-    func handleImageButtonClicked(type: ImageButtonType) {
-        print(type)
+extension SearchViewController: ResultSearchCellDelegate {
+    func clickImageButton(type: ImageButtonType, cell: ResultSearchCell) {
+        cell.setShowDownloadButton(isShow: false)
+        if let index = resultSearchView.getTable().indexPath(for: cell) {
+            let track = listTrack[index.row]
+            DownloadManager.downloadTrack(track: track, progressDownload: { (progress) in
+                cell.setProgress(value: self.getPercentage(progress: progress))
+            }) { (response) in
+                print(response.response?.status)
+                print(self.listFilesFromDocumentsFolder())
+            }
+        }
+    }
+    
+    func listFilesFromDocumentsFolder() -> [String]? {
+        let fileManager = FileManager.default;
+        let docs = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0].path
+        return try? fileManager.contentsOfDirectory(atPath:docs)
+    }
+    
+    func getPercentage(progress: Progress) -> CGFloat {
+        return CGFloat(progress.completedUnitCount * 100 / progress.totalUnitCount)
     }
 }
 
+
 extension SearchViewController: SuggestionSearchViewDelegate {
     func clickHotButton(title: String?) {
-        print(title)
+
     }
 }
 

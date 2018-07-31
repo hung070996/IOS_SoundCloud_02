@@ -27,6 +27,6 @@ final class HomeTableViewCell: UITableViewCell, NibReusable {
         collectionView.dataSource = viewController as? UICollectionViewDataSource
         collectionView.register(cellType: HomeCollectionViewCell.self)
         collectionView.tag = tag
-        titleLabel.text = genre.name
+        titleLabel.text = genre.genreType.getNameType
     }
 }

@@ -46,7 +46,7 @@ final class HomeViewController: UIViewController {
                 }
                 DispatchQueue.main.async {
                     self?.listGenre = data
-                    self?.listGenre.sort(by: { $0.genre.rawValue < $1.genre.rawValue })
+                    self?.listGenre.sort(by: { $0.genreType.rawValue < $1.genreType.rawValue })
                     self?.tableView.reloadData()
                     loading.stop()
                 }
