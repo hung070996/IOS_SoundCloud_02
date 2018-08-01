@@ -14,6 +14,8 @@ protocol PlaySongProtocol: class {
 }
 
 class PlaySongViewController: UIViewController {
+    @IBOutlet private weak var singerLabel: UILabel!
+    @IBOutlet private weak var songNameLabel: UILabel!
     @IBOutlet private weak var durationTimeLabel: UILabel!
     @IBOutlet private weak var currentTimeLabel: UILabel!
     @IBOutlet private weak var sliderCountTime: UISlider!
@@ -30,11 +32,8 @@ class PlaySongViewController: UIViewController {
     @IBOutlet private weak var ibLoop: ImageButton!
     @IBOutlet private weak var collectionViewDisplay: UICollectionView!
     weak var delegate: PlaySongProtocol?
-    var playerItem: AVPlayerItem?
     var viewcontrollersContent: [UIViewController]?
     private struct ConstantData {
-        static let songUrl = "http://api.soundcloud.com/tracks/371985497/stream?client_id=AJ4pxoFBchG36bmDxD5VwWzwlpDDbuYE"
-        static let songDuration = 170
         static let numberOfItemCell = 2
         static let indexItemAnimationView = 0
         static let indexItemCurrentPlaylist = 1
@@ -65,16 +64,13 @@ class PlaySongViewController: UIViewController {
     }
     
     private func setUpAVPlayer() {
-        //using template data
-        self.durationTimeLabel.text = Utils.shared.formatDurationTime(time: ConstantData.songDuration)
-        PlaySongManager.shared.delegate = self
-        let str = ConstantData.songUrl
-        guard let url = URL(string: str) else {
-            //alert inform the error
+        guard let currentTrack = PlaySongManager.shared.currentTrack else {
             return
         }
-        playerItem = AVPlayerItem(url: url)
-        PlaySongManager.shared.prepareToPlay(urlString: ConstantData.songUrl, vc: self)
+        songNameLabel.text = currentTrack.title
+        singerLabel.text = currentTrack.artist
+        self.durationTimeLabel.text = Utils.shared.formatDurationTime(time: currentTrack.duration / 1000)
+        PlaySongManager.shared.playSongWithHandleVC(handleVC: self)
         sliderCountTime.addTarget(self, action: #selector(handleActionSlider(sender:event:)), for: UIControlEvents.allEvents)
         sliderCountTime.setValue(Float(ConstantData.zero), animated: false)
     }
@@ -94,6 +90,7 @@ class PlaySongViewController: UIViewController {
     }
     
     private func setDelegate() {
+        PlaySongManager.shared.delegate = self
         [ibMinimize, ibCurrentPlaylist, ibAddToPlaylist, ibShare, ibDownload, ibLike, ibShuffle, ibPlayNext, ibPlayPrevious, ibPlay, ibLoop].forEach { (button) in
             button?.delegate = self
         }
@@ -109,7 +106,7 @@ class PlaySongViewController: UIViewController {
                     let item = player.currentItem else {
                     return
                 }
-                let value = (sliderCountTime.value * Float(ConstantData.songDuration))
+                let value = (sliderCountTime.value * Float(item.duration.seconds))
                 let timeInterval = CMTime(seconds: Double(value), preferredTimescale: CMTimeScale(NSEC_PER_SEC))
                 item.seek(to: timeInterval)
                 player.play()
@@ -141,6 +138,30 @@ class PlaySongViewController: UIViewController {
         }
     }
     
+    func displaySongInfo() {
+        guard let arrVC = viewcontrollersContent, let animationVC = arrVC[0] as? AnimationRotationViewController,
+            let track = PlaySongManager.shared.currentTrack else {
+            return
+        }
+        animationVC.setImageView(urlString: track.urlImage)
+        animationVC.startAnimation()
+    }
+    
+    func songWillEndHandle() {
+        switch PlaySongManager.shared.loopType {
+        case .none:
+            PlaySongManager.shared.playNext(handleVC: self)
+        case .single:
+            guard let player = PlaySongManager.shared.player, let item = player.currentItem else {
+                return
+            }
+            item.seek(to: kCMTimeZero)
+            player.play()
+        case .all:
+            PlaySongManager.shared.playFirstItem(handlVC: self)
+        }
+    }
+    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == #keyPath(AVPlayerItem.status) {
             let status: AVPlayerItemStatus
@@ -169,17 +190,29 @@ extension PlaySongViewController: PlaySongTimerDelegate {
             let duration = player.currentItem?.asset.duration else {
             return
         }
-        player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main) { [weak self] time in
+        let observer = player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main) { [weak self] time in
+            guard let `self` = self else {
+                return
+            }
             let timeInt = Int(CMTimeGetSeconds(time))
             let str = Utils.shared.formatDurationTime(time: timeInt)
-            self?.currentTimeLabel.text = str
-            self?.sliderCountTime.setValue(Float(time.seconds / duration.seconds), animated: true)
+            self.currentTimeLabel.text = str
+            self.sliderCountTime.setValue(Float(time.seconds / duration.seconds), animated: true)
             if time.seconds / duration.seconds >= ConstantData.one {
-                //decide for next Action or loop - current is auto loop
-                player.currentItem?.seek(to: kCMTimeZero)
-                player.play()
+                self.songWillEndHandle()
             }
         }
+        manager.currentObserver = observer
+    }
+    
+    func resetView() {
+        setUpAVPlayer()
+        guard let arrVC = viewcontrollersContent, let playlistVC = arrVC[Int(ConstantData.one)] as? CurrentPlaylistViewController else {
+            return
+        }
+        playlistVC.dataArray = PlaySongManager.shared.currentList
+        playlistVC.reloadPlaylist()
+        displaySongInfo()
     }
 }
 
@@ -200,9 +233,24 @@ extension PlaySongViewController: ImageButtonDelegate {
         case .displayCurrentPlaylist, .displayCurrentSong:
             displayCurrentButtonHandle()
             
+        case .playNext:
+            PlaySongManager.shared.playNext(handleVC: self)
+            
+        case .playPrevious:
+            PlaySongManager.shared.playPrevious(handleVC: self)
+            
+        case .loop:
+            PlaySongManager.shared.changeLoopStatus(button: ibLoop)
+            
         default:
             fatalError()
         }
+    }
+}
+
+extension PlaySongViewController: CustomTabbarDelegate {
+    func requestPlaySong() {
+        PlaySongManager.shared.playSongWithHandleVC(handleVC: self)
     }
 }
 
