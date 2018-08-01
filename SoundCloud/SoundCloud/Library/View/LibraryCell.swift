@@ -10,8 +10,18 @@ import UIKit
 import Reusable
 
 class LibraryCell: UITableViewCell, NibReusable {
-
+    @IBOutlet private var number: UILabel!
+    @IBOutlet private var title: UILabel!
+    @IBOutlet private var img: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    func setContentForCell(img: String, title: String, number: Int) {
+        let image = UIImage(named: img)
+        self.img.image = image
+        self.title.text = title
+        self.number.text = String(number)
     }
 }

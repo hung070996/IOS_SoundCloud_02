@@ -11,11 +11,34 @@ import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    private struct Constant {
+        static let favorite = "Favorite"
+        static let download = "Download"
+    }
+    
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        checkToAddDownloadAndFavorite()
         return true
+    }
+    
+    func checkToAddDownloadAndFavorite() {
+        if !DatabaseManager.shared.checkExistPlaylist(name: Constant.download) {
+            if DatabaseManager.shared.addPlaylist(name: Constant.download) {
+                print("add Download success")
+            }
+        } else {
+            print("Already Download")
+        }
+        if !DatabaseManager.shared.checkExistPlaylist(name: Constant.favorite) {
+            if DatabaseManager.shared.addPlaylist(name: Constant.favorite) {
+                print("add Favorite success")
+            }
+        } else {
+            print("Already Favorite")
+        }
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

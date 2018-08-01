@@ -15,6 +15,7 @@ enum ImageButtonType {
     case library
     case love
     case download
+    case downloaded
     case share
     case addToPlaylist
     case minimize
@@ -44,6 +45,8 @@ enum ImageButtonType {
             return #imageLiteral(resourceName: "Icon_Love")
         case .download:
             return #imageLiteral(resourceName: "Icon_Download")
+        case .downloaded:
+            return #imageLiteral(resourceName: "downloaded")
         case .share:
             return #imageLiteral(resourceName: "Icon_Share")
         case .addToPlaylist:

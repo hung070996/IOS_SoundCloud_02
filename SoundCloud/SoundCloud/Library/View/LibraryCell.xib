@@ -51,6 +51,11 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="img" destination="Ulu-bl-mJ8" id="UXu-9W-7wX"/>
+                <outlet property="number" destination="Fw6-eb-RP8" id="kyd-lV-gQo"/>
+                <outlet property="title" destination="4as-r0-vSQ" id="Ch2-CN-DPZ"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

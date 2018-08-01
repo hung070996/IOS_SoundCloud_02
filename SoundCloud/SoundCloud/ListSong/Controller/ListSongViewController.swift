@@ -15,6 +15,8 @@ class ListSongViewController: UIViewController {
         static let numberOfCell = 10
     }
     
+    var playlist = Playlist()
+    
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var titleView: TitleView!
     
@@ -38,12 +40,12 @@ class ListSongViewController: UIViewController {
 
 extension ListSongViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Constant.numberOfCell
+        return playlist.listTrack.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ResultSearchCell = tableView.dequeueReusableCell(for: indexPath)
-//        cell.setContentForCell(viewController: self)
+        cell.setContentForCell(viewController: self, track: playlist.listTrack[indexPath.row])
         cell.setShowDownloadButton(isShow: false)
         return cell
     }
