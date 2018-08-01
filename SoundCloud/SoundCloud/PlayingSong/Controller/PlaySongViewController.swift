@@ -32,7 +32,8 @@ class PlaySongViewController: UIViewController {
     @IBOutlet private weak var ibLoop: ImageButton!
     @IBOutlet private weak var collectionViewDisplay: UICollectionView!
     weak var delegate: PlaySongProtocol?
-    var viewcontrollersContent: [UIViewController]?
+    private var viewcontrollersContent: [UIViewController]?
+    
     private struct ConstantData {
         static let numberOfItemCell = 2
         static let indexItemAnimationView = 0
@@ -49,13 +50,18 @@ class PlaySongViewController: UIViewController {
         setUpViewController()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        updatePlayButton()
+        updateStatusTrack()
+    }
+    
     private func setUpViewController() {
         guard let animationVC = Utils.shared.getViewControllerFrom(storyboard: .extra, identifierType: .rotationImageView) as? AnimationRotationViewController,
             let listSongVC = Utils.shared.getViewControllerFrom(storyboard: .extra, identifierType: .currentPlaylistPlaying) as? CurrentPlaylistViewController
             else {
-                //alert inform the error
                 return
         }
+        listSongVC.delegate = self
         viewcontrollersContent = [animationVC, listSongVC]
         viewcontrollersContent?.forEach({ (vc) in
             self.addChildViewController(vc)
@@ -64,9 +70,7 @@ class PlaySongViewController: UIViewController {
     }
     
     private func setUpAVPlayer() {
-        guard let currentTrack = PlaySongManager.shared.currentTrack else {
-            return
-        }
+        guard let currentTrack = PlaySongManager.shared.currentTrack else { return }
         songNameLabel.text = currentTrack.title
         singerLabel.text = currentTrack.artist
         self.durationTimeLabel.text = Utils.shared.formatDurationTime(time: currentTrack.duration / 1000)
@@ -109,7 +113,7 @@ class PlaySongViewController: UIViewController {
                 let value = (sliderCountTime.value * Float(item.duration.seconds))
                 let timeInterval = CMTime(seconds: Double(value), preferredTimescale: CMTimeScale(NSEC_PER_SEC))
                 item.seek(to: timeInterval)
-                player.play()
+                PlaySongManager.shared.play(playButton: ibPlay)
             default:
                 break
             }
@@ -145,21 +149,43 @@ class PlaySongViewController: UIViewController {
         }
         animationVC.setImageView(urlString: track.urlImage)
         animationVC.startAnimation()
+        let color: UIColor = PlaySongManager.shared.isShuffle ? .red : .white
+        ibShuffle.setTintColorOfImage(color: color)
+        ibLoop.setLoopButtonDisplay(loopType: PlaySongManager.shared.loopType)
     }
     
     func songWillEndHandle() {
         switch PlaySongManager.shared.loopType {
         case .none:
-            PlaySongManager.shared.playNext(handleVC: self)
+            if PlaySongManager.shared.getCurrentTrackIndex() + 1 >= PlaySongManager.shared.currentList.count {
+                guard let player = PlaySongManager.shared.player, let item = player.currentItem else {
+                    return
+                }
+                item.seek(to: kCMTimeZero)
+                PlaySongManager.shared.pause(playButton: ibPlay)
+            } else {
+                PlaySongManager.shared.playNext(handleVC: self)
+            }
         case .single:
             guard let player = PlaySongManager.shared.player, let item = player.currentItem else {
                 return
             }
             item.seek(to: kCMTimeZero)
-            player.play()
+            PlaySongManager.shared.play(playButton: ibPlay)
         case .all:
-            PlaySongManager.shared.playFirstItem(handlVC: self)
+            PlaySongManager.shared.playNext(handleVC: self)
         }
+    }
+    
+    private func updatePlayButton() {
+        let ibType: ImageButtonType = PlaySongManager.shared.isPlaying ? .pause : .play
+        ibPlay.muttating(type: ibType)
+    }
+    
+    private func updateStatusTrack() {
+        guard let track = PlaySongManager.shared.currentTrack else { return }
+        let color: UIColor = track.downloadable ? .white : .lightGray
+        ibDownload.setTintColorOfImage(color: color)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -184,6 +210,24 @@ class PlaySongViewController: UIViewController {
 }
 
 extension PlaySongViewController: PlaySongTimerDelegate {
+    func startAnimation() {
+        guard let arrVC = viewcontrollersContent,
+            let animationVC = arrVC[ConstantData.zero] as? AnimationRotationViewController else {
+            return
+        }
+        if !animationVC.isAnimating {
+            animationVC.startAnimation()
+        }
+    }
+    
+    func stopAnimation() {
+        guard let arrVC = viewcontrollersContent,
+            let animationVC = arrVC[ConstantData.zero] as? AnimationRotationViewController else {
+            return
+        }
+        animationVC.stopAnimation()
+    }
+    
     func startTimer(manager: PlaySongManager) {
         let interval = CMTime(seconds: ConstantData.one, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
         guard let player = manager.player,
@@ -191,9 +235,7 @@ extension PlaySongViewController: PlaySongTimerDelegate {
             return
         }
         let observer = player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main) { [weak self] time in
-            guard let `self` = self else {
-                return
-            }
+            guard let `self` = self else { return }
             let timeInt = Int(CMTimeGetSeconds(time))
             let str = Utils.shared.formatDurationTime(time: timeInt)
             self.currentTimeLabel.text = str
@@ -206,8 +248,14 @@ extension PlaySongViewController: PlaySongTimerDelegate {
     }
     
     func resetView() {
-        setUpAVPlayer()
-        guard let arrVC = viewcontrollersContent, let playlistVC = arrVC[Int(ConstantData.one)] as? CurrentPlaylistViewController else {
+        guard let currentTrack = PlaySongManager.shared.currentTrack else { return }
+        songNameLabel.text = currentTrack.title
+        singerLabel.text = currentTrack.artist
+        self.durationTimeLabel.text = Utils.shared.formatDurationTime(time: currentTrack.duration / 1000)
+        sliderCountTime.setValue(Float(ConstantData.zero), animated: false)
+        sliderCountTime.addTarget(self, action: #selector(handleActionSlider(sender:event:)), for: UIControlEvents.allEvents)
+        guard let arrVC = viewcontrollersContent,
+            let playlistVC = arrVC[Int(ConstantData.one)] as? CurrentPlaylistViewController else {
             return
         }
         playlistVC.dataArray = PlaySongManager.shared.currentList
@@ -241,6 +289,11 @@ extension PlaySongViewController: ImageButtonDelegate {
             
         case .loop:
             PlaySongManager.shared.changeLoopStatus(button: ibLoop)
+        
+        case .shuffle:
+            PlaySongManager.shared.isShuffle = !PlaySongManager.shared.isShuffle
+            let color = PlaySongManager.shared.isShuffle ? UIColor.red : UIColor.white
+            ibShuffle.setTintColorOfImage(color: color)
             
         default:
             fatalError()
@@ -250,6 +303,17 @@ extension PlaySongViewController: ImageButtonDelegate {
 
 extension PlaySongViewController: CustomTabbarDelegate {
     func requestPlaySong() {
+        DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 0.5) {
+            DispatchQueue.main.sync {
+                PlaySongManager.shared.playSongWithHandleVC(handleVC: self)
+            }
+        }
+    }
+}
+
+extension PlaySongViewController: CurrentPlaylistDelegate {
+    func cellDidTap(track: Track) {
+        PlaySongManager.shared.temproraryTrack = track
         PlaySongManager.shared.playSongWithHandleVC(handleVC: self)
     }
 }
@@ -263,14 +327,13 @@ extension PlaySongViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IdentifierType.songPlayingCollectionCell.rawValue, for: indexPath)
         if let arrViewController = viewcontrollersContent {
             cell.contentView.addSubview(arrViewController[indexPath.row].view)
+            arrViewController[indexPath.row].view.frame = cell.contentView.bounds
         }
         return cell
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        guard let first = collectionViewDisplay.indexPathsForVisibleItems.first else {
-            return
-        }
+        guard let first = collectionViewDisplay.indexPathsForVisibleItems.first else { return }
         if first.item == ConstantData.indexItemAnimationView {
             ibCurrentPlaylist.muttating(type: .displayCurrentPlaylist)
         } else {
@@ -279,6 +342,6 @@ extension PlaySongViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: collectionView.contentSize.height)
+        return CGSize(width: UIScreen.main.bounds.width, height: collectionView.bounds.height)
     }
 }

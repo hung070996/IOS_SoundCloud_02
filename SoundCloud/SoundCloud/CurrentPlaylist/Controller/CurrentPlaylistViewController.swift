@@ -9,9 +9,14 @@
 import UIKit
 import Reusable
 
+protocol CurrentPlaylistDelegate: class {
+    func cellDidTap(track: Track)
+}
+
 class CurrentPlaylistViewController: UIViewController {
     @IBOutlet private weak var tblListCurrentSong: UITableView!
     var dataArray = [Track]()
+    weak var delegate: CurrentPlaylistDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +46,14 @@ extension CurrentPlaylistViewController: UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as CurrentPlaylistTableViewCell
+        cell.selectionStyle = .none
         cell.fillData(index: indexPath.row + 1, track: dataArray[indexPath.row])
+        let collor: UIColor = PlaySongManager.shared.getCurrentTrackIndex() == indexPath.row ? .orange : .purple
+        cell.backgroundColor = collor
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.cellDidTap(track: dataArray[indexPath.row])
     }
 }

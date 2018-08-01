@@ -42,14 +42,23 @@ enum LoopType: Int {
 protocol PlaySongTimerDelegate: class {
     func startTimer(manager: PlaySongManager)
     func resetView()
+    func stopAnimation()
+    func startAnimation()
 }
 
 class PlaySongManager {
     static let shared = PlaySongManager()
     var type: PlayType = .online
     var player: AVPlayer?
-    var currentList = [Track]()
-    var currentListItem = [AVPlayerItem]()
+    //hold the original list track
+    var currentList = [Track]() {
+        didSet {
+            generateShuffleList()
+        }
+    }
+    //hold the shuffled list
+    var shuffleList = [Track]()
+    var isPlaying = false
     var timer = Timer()
     var currentTrack: Track?
     var temproraryTrack: Track?
@@ -58,6 +67,7 @@ class PlaySongManager {
     var loopType = LoopType.none
     var isShuffle = false
     weak var delegate: PlaySongTimerDelegate?
+    
     private struct ConstantData {
         static let baseStreamUrl = "http://api.soundcloud.com/tracks/"
         static let baseStreamTrail = "/stream?client_id="
@@ -69,7 +79,7 @@ class PlaySongManager {
         guard let track = temproraryTrack else {
             return
         }
-        let resultChecking = checkItemInCurrentPlaylist(track: track)
+        let resultChecking = checkItemInCurrentPlaylist(track: track, arr: currentList)
         if  resultChecking.result {
             if resultChecking.index == getCurrentTrackIndex() {
                 //No need to reset view - just display
@@ -77,14 +87,12 @@ class PlaySongManager {
             } else {
                 currentTrack = currentList[resultChecking.index]
                 prepareAVPlayerItem(handleVC: handleVC)
-                delegate?.resetView()
             }
             print("Song is existing .... ")
         } else { //play a new song
             currentList.append(track)
             currentTrack = temproraryTrack
             prepareAVPlayerItem(handleVC: handleVC)
-            delegate?.resetView()
         }
     }
     
@@ -112,6 +120,8 @@ class PlaySongManager {
         if let observer = self.currentObserver {
             player?.removeTimeObserver(observer)
         }
+        delegate?.resetView()
+        playerItem.preferredForwardBufferDuration = 2
         player = AVPlayer(playerItem: playerItem)
     }
     
@@ -119,11 +129,12 @@ class PlaySongManager {
         guard let track = currentTrack else {
             return
         }
-        let currentIndex = checkItemInCurrentPlaylist(track: track).index
-        if currentIndex + 1 >= currentList.count {
-            currentTrack = currentList[0]
+        if isShuffle {
+            let currentIndex = checkItemInCurrentPlaylist(track: track, arr: shuffleList).index
+            currentTrack = currentIndex + 1 >= shuffleList.count ? shuffleList[0] : shuffleList[currentIndex + 1]
         } else {
-            currentTrack = currentList[currentIndex+1]
+            let currentIndex = checkItemInCurrentPlaylist(track: track, arr: currentList).index
+            currentTrack = currentIndex + 1 >= currentList.count ? currentList[0] : currentList[currentIndex + 1]
         }
         prepareAVPlayerItem(handleVC: handleVC)
     }
@@ -137,11 +148,12 @@ class PlaySongManager {
         guard let track = currentTrack else {
             return
         }
-        let currentIndex = checkItemInCurrentPlaylist(track: track).index
-        if currentIndex - 1 < 0 {
-            currentTrack = currentList[0]
+        if isShuffle {
+            let currentIndex = checkItemInCurrentPlaylist(track: track, arr: shuffleList).index
+            currentTrack = currentIndex - 1 < 0 ? shuffleList[0] : shuffleList[currentIndex - 1]
         } else {
-            currentTrack = currentList[currentIndex - 1]
+            let currentIndex = checkItemInCurrentPlaylist(track: track, arr: currentList).index
+            currentTrack = currentIndex - 1 < 0 ? currentList[0] : currentList[currentIndex - 1]
         }
         prepareAVPlayerItem(handleVC: handleVC)
     }
@@ -151,6 +163,8 @@ class PlaySongManager {
             return
         }
         player.play()
+        isPlaying = true
+        delegate?.startAnimation()
         playButton.muttating(type: .pause)
     }
     
@@ -159,14 +173,22 @@ class PlaySongManager {
             return
         }
         player.pause()
+        isPlaying = false
         playButton.muttating(type: .play)
+        delegate?.stopAnimation()
+    }
+    
+    func generateShuffleList(){
+        shuffleList = currentList
+        for last in (0..<shuffleList.count).reversed() {
+            let rand = Int(arc4random_uniform(UInt32(last)))
+            shuffleList.swapAt(last, rand)
+        }
     }
     
     func changeLoopStatus(button: ImageButton) {
         var nextStatus = self.loopType.rawValue + 1
-        if nextStatus > LoopType.all.rawValue {
-            nextStatus = 0
-        }
+        nextStatus = nextStatus > LoopType.all.rawValue ? 0 : nextStatus
         if let nextLoopType = LoopType.init(rawValue: nextStatus) {
             loopType = nextLoopType
         }
@@ -200,9 +222,9 @@ class PlaySongManager {
         return -1
     }
     
-    func checkItemInCurrentPlaylist(track: Track) -> (result: Bool, index: Int) {
-        for index in 0..<currentList.count {
-            if currentList[index].id == track.id {
+    func checkItemInCurrentPlaylist(track: Track, arr: [Track]) -> (result: Bool, index: Int) {
+        for index in 0..<arr.count {
+            if arr[index].id == track.id {
                 return (true, index)
             }
         }

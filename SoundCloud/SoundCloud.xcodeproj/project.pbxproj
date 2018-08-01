@@ -365,6 +365,7 @@
 				08368F0B2109839300DCD0B1 /* ViewControllerExtension.swift */,
 				084F4033210B0D66006E8415 /* SearchBarExtension.swift */,
 				084F4035210B246A006E8415 /* ButtonExtension.swift */,
+				1BCFE523210EAB73005D341C /* ImageViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -504,7 +505,6 @@
 			isa = PBXGroup;
 			children = (
 				1BCFE51F210EAA73005D341C /* AnimationRotationViewController.swift */,
-				1BCFE523210EAB73005D341C /* ImageViewExtension.swift */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -653,6 +653,11 @@
 				TargetAttributes = {
 					08307781210191320005DEF8 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -952,7 +957,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = KG5F9H52Q8;
 				INFOPLIST_FILE = SoundCloud/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -972,7 +977,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = KG5F9H52Q8;
 				INFOPLIST_FILE = SoundCloud/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = (

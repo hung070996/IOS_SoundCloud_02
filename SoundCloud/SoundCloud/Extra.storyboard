@@ -161,7 +161,7 @@
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xdj-G9-W52">
                                 <rect key="frame" x="0.0" y="92" width="375" height="400"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.54117647059999996" green="0.4039215686" blue="0.74117647060000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="yL5-WG-rG4">
                                     <size key="itemSize" width="372" height="398"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -351,7 +351,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DvG-8h-cMf">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DvG-8h-cMf">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" red="0.54117647059999996" green="0.4039215686" blue="0.74117647060000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
@@ -386,17 +386,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sM2-SM-wCX">
-                                <rect key="frame" x="93.5" y="250" width="187.5" height="187.5"/>
+                                <rect key="frame" x="62.5" y="219" width="250" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="sM2-SM-wCX" secondAttribute="height" multiplier="1:1" id="zCL-57-3tU"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.54117647059999996" green="0.4039215686" blue="0.74117647060000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="sM2-SM-wCX" firstAttribute="centerX" secondItem="AwX-G8-cbt" secondAttribute="centerX" id="ban-zN-t4p"/>
                             <constraint firstItem="sM2-SM-wCX" firstAttribute="centerY" secondItem="AwX-G8-cbt" secondAttribute="centerY" id="nUG-eu-NDN"/>
-                            <constraint firstItem="sM2-SM-wCX" firstAttribute="width" secondItem="jYG-Vn-rvz" secondAttribute="width" multiplier="1/2" id="sMf-OC-nIp"/>
+                            <constraint firstItem="sM2-SM-wCX" firstAttribute="width" secondItem="jYG-Vn-rvz" secondAttribute="width" multiplier="2/3" id="sMf-OC-nIp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AwX-G8-cbt"/>
                     </view>

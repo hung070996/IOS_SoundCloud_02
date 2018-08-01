@@ -23,6 +23,8 @@ enum IdentifierType: String {
     case currentPlaylistPlaying = "CurrentPlaylistViewController"
     case songPlayingCollectionCell = "SongPlayingCollectionViewCell"
     case customTabbar = "CustomTabbarViewController"
+    case libraryNavigation = "LibraryNavigation"
+    case homeNavigation = "HomeNavigation"
 }
 
 class Utils {
