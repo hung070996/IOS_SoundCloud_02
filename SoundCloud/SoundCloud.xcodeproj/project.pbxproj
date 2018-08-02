@@ -51,6 +51,7 @@
 		084F4036210B246A006E8415 /* ButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F4035210B246A006E8415 /* ButtonExtension.swift */; };
 		08AAC09B210EFCE200ECD1CA /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AAC09A210EFCE200ECD1CA /* DownloadManager.swift */; };
 		08AAC09D210F010200ECD1CA /* DownloadFileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AAC09C210F010200ECD1CA /* DownloadFileRequest.swift */; };
+		08B2C3552112DC38008C5937 /* ListSongWithGenreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B2C3542112DC38008C5937 /* ListSongWithGenreViewController.swift */; };
 		08C0428A210AB07700003C6C /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C04289210AB07700003C6C /* Networking.swift */; };
 		1B3010E5210ACD0400354549 /* PlaySongManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3010E4210ACD0400354549 /* PlaySongManager.swift */; };
 		1B4BB1E221084CEB002F6503 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4BB1E121084CEB002F6503 /* APIManager.swift */; };
@@ -123,6 +124,7 @@
 		084F4035210B246A006E8415 /* ButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtension.swift; sourceTree = "<group>"; };
 		08AAC09A210EFCE200ECD1CA /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		08AAC09C210F010200ECD1CA /* DownloadFileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadFileRequest.swift; sourceTree = "<group>"; };
+		08B2C3542112DC38008C5937 /* ListSongWithGenreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSongWithGenreViewController.swift; sourceTree = "<group>"; };
 		08C04289210AB07700003C6C /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		1B3010E4210ACD0400354549 /* PlaySongManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySongManager.swift; sourceTree = "<group>"; };
 		1B4BB1E121084CEB002F6503 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				0822F06321071B5F00B59C14 /* ListSongViewController.swift */,
+				08B2C3542112DC38008C5937 /* ListSongWithGenreViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -720,6 +723,7 @@
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Reusable/Reusable.framework",
 				"${BUILT_PRODUCTS_DIR}/SpringIndicator/SpringIndicator.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/UICircularProgressRing/UICircularProgressRing.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -729,6 +733,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reusable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SpringIndicator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICircularProgressRing.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -768,6 +773,7 @@
 				1BFCC86E2106E3C600A509B8 /* CurrentSongPlaying.swift in Sources */,
 				083077A62101DC4D0005DEF8 /* HomeTableViewCell.swift in Sources */,
 				1B4BB1E6210864B8002F6503 /* BaseError.swift in Sources */,
+				08B2C3552112DC38008C5937 /* ListSongWithGenreViewController.swift in Sources */,
 				1BFCC87521070D1100A509B8 /* CurrentPlaylistViewController.swift in Sources */,
 				0822F06421071B5F00B59C14 /* ListSongViewController.swift in Sources */,
 				1B4BB1EB21086F14002F6503 /* BaseResult.swift in Sources */,
@@ -957,7 +963,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = KG5F9H52Q8;
+				DEVELOPMENT_TEAM = F52RUFA4TX;
 				INFOPLIST_FILE = SoundCloud/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -977,7 +983,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = KG5F9H52Q8;
+				DEVELOPMENT_TEAM = F52RUFA4TX;
 				INFOPLIST_FILE = SoundCloud/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = (

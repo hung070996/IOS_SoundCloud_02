@@ -25,6 +25,12 @@ class SearchRequest: BaseRequest {
         keySearch = key
     }
     
+    convenience init(key: String, limit: Int) {
+        self.init()
+        keySearch = key
+        self.limit = limit
+    }
+    
     func getParameter() -> Parameters {
         return [
             APIParameterKey.keySearch: keySearch,

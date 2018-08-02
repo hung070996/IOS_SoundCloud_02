@@ -57,4 +57,10 @@ class Utils {
     func getViewControllerFrom(storyboard: StoryBoardType, identifierType: IdentifierType) -> UIViewController {
         return UIStoryboard(name: storyboard.rawValue, bundle: nil).instantiateViewController(withIdentifier: identifierType.rawValue)
     }
+    
+    func listFilesFromDocumentsFolder() -> [String]? {
+        let fileManager = FileManager.default
+        let docs = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0].path
+        return try? fileManager.contentsOfDirectory(atPath:docs)
+    }
 }

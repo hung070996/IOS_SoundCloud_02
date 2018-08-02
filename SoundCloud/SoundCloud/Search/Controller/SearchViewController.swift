@@ -14,11 +14,16 @@ class SearchViewController: UIViewController {
     private struct Constant {
         static let history = "history"
         static let download = "Download"
+        static let retainToLoadmore = 5
+        static let numberLoadmore = 20
+        static let main = "Main"
+        static let playlistViewController = "PlaylistViewController"
     }
     
     private var listTrack = [TrackSearch]()
     private var listHistory = [String]()
     private var listDownloaded = [Track]()
+    private var limit = 20
     
     @IBOutlet private var searchBar: UISearchBar!
     @IBOutlet private var suggestionSearchView: SuggestionSearchView!
@@ -30,6 +35,10 @@ class SearchViewController: UIViewController {
         resultSearchView.setContentTableview(viewController: self)
         suggestionSearchView.setContentView(viewController: self)
         suggestionSearchView.delegate = self
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        searchBar.endEditing(true)
     }
     
     func getData() {
@@ -75,21 +84,33 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == listTrack.count - Constant.retainToLoadmore {
+            limit += Constant.numberLoadmore
+            if let text = searchBar.text {
+                handleSearch(text: text, searchBar: searchBar)
+            }
+        }
+    }
 }
 
 extension SearchViewController: ResultSearchCellDelegate {
     func clickImageButton(type: ImageButtonType, cell: ResultSearchCell) {
-        if type == .download {
+        guard let index = resultSearchView.getTable().indexPath(for: cell) else {
+            return
+        }
+        let track = listTrack[index.row]
+        switch type {
+        case .download:
             cell.setShowDownloadButton(isShow: false)
-            guard let index = resultSearchView.getTable().indexPath(for: cell) else {
-                return
-            }
-            let track = listTrack[index.row]
             DownloadManager.downloadTrack(track: track, progressDownload: { [weak self] progress in
                 guard let `self` = self else {
                     return
                 }
-                cell.setProgress(value: self.getPercentage(progress: progress))
+                DispatchQueue.main.async {
+                    cell.setProgress(value: self.getPercentage(progress: progress))
+                }
             }) { (downloadSuccess, error) in
                 if downloadSuccess {
                     if !DatabaseManager.shared.checkExistTrack(id: track.id) {
@@ -109,19 +130,23 @@ extension SearchViewController: ResultSearchCellDelegate {
                         DownloadManager.checkIsDownloading(completion: { (isDownloading) in
                             if !isDownloading {
                                 self.getData()
-                                self.resultSearchView.reloadTable()
+                                DispatchQueue.main.async {
+                                    self.resultSearchView.reloadTable()
+                                }
                             }
                         })
                     }
                 }
             }
+        case .addToPlaylist:
+            let storyboard = UIStoryboard(name: Constant.main, bundle: nil)
+            if let vc = storyboard.instantiateViewController(withIdentifier: Constant.playlistViewController) as? PlaylistViewController {
+                vc.trackWantToAdd = track
+                self.present(vc, animated: true, completion: nil)
+            }
+        default:
+            break
         }
-    }
-    
-    func listFilesFromDocumentsFolder() -> [String]? {
-        let fileManager = FileManager.default;
-        let docs = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0].path
-        return try? fileManager.contentsOfDirectory(atPath:docs)
     }
     
     func getPercentage(progress: Progress) -> CGFloat {
@@ -131,7 +156,11 @@ extension SearchViewController: ResultSearchCellDelegate {
 
 extension SearchViewController: SuggestionSearchViewDelegate {
     func clickHotButton(title: String?) {
-
+        guard let title = title else {
+            return
+        }
+        searchBar.text = title
+        handleSearch(text: title, searchBar: searchBar)
     }
 }
 
@@ -147,7 +176,7 @@ extension SearchViewController: UISearchBarDelegate {
             suggestionSearchView.isHidden = true
             APIManager.shared.cancelRequest()
             searchBar.isLoading = true
-            Networking.getSearch(key: text) { [weak self] data, error in
+            Networking.getSearch(key: text, limit: limit) { [weak self] data, error in
                 if let error = error {
                     if let message = error.errorMessage {
                         DispatchQueue.main.async {

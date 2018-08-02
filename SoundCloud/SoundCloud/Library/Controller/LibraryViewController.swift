@@ -14,6 +14,9 @@ class LibraryViewController: UIViewController {
         static let titles = ["Download", "Favorite", "Playlist"]
         static let title = "Library"
         static let indexPlaylist = 2
+        static let main = "Main"
+        static let listSongViewController = "ListSongViewController"
+        static let playlistViewController = "PlaylistViewController"
     }
     
     private var listPlaylist = [Playlist]()
@@ -23,9 +26,19 @@ class LibraryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        listPlaylist = DatabaseManager.shared.getListPlaylist()
+        addObserver()
+        getData()
         setTableView()
         setTitleView()
+    }
+    
+    func addObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name.init("refresh"), object: nil)
+    }
+    
+    @objc func getData() {
+        listPlaylist = DatabaseManager.shared.getListPlaylist()
+        tableView.reloadData()
     }
     
     func setTableView() {
@@ -54,8 +67,16 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: Constant.main, bundle: nil)
         if indexPath.row != Constant.indexPlaylist {
-            
+            if let vc = storyboard.instantiateViewController(withIdentifier: Constant.listSongViewController) as? ListSongViewController {
+                vc.playlist = listPlaylist[indexPath.row]
+                navigationController?.pushViewController(vc, animated: true)
+            }
+        } else {
+            if let vc = storyboard.instantiateViewController(withIdentifier: Constant.playlistViewController) as? PlaylistViewController {
+                navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
 }

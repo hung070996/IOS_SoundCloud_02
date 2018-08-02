@@ -20,4 +20,6 @@ class Playlist: NSObject {
         self.name = name
         self.listTrack = list
     }
+    
+    func getID() -> Int { return self.id }
 }

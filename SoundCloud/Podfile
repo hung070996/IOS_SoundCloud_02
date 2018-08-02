@@ -12,4 +12,5 @@ target 'SoundCloud' do
 	pod 'Kingfisher'
 	pod 'SpringIndicator'
 	pod 'UICircularProgressRing'
+	pod 'Toast-Swift'
 end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N9b-IM-n6D">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="u1M-N8-ftL">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -27,7 +27,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2qv-EE-OP3">
                                 <rect key="frame" x="0.0" y="80" width="375" height="587"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bCr-2P-n0W">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bCr-2P-n0W">
                                         <rect key="frame" x="0.0" y="10" width="375" height="577"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
@@ -35,7 +35,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="375" height="200"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rdf-u3-apl" id="Ol5-PG-NKg">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="199.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -78,6 +78,49 @@
             </objects>
             <point key="canvasLocation" x="1056.8" y="117.39130434782609"/>
         </scene>
+        <!--List Song With Genre View Controller-->
+        <scene sceneID="PRo-zl-Ak9">
+            <objects>
+                <viewController storyboardIdentifier="ListSongWithGenreViewController" id="7jN-DY-Gaz" customClass="ListSongWithGenreViewController" customModule="SoundCloud" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="o7C-j7-GB8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GKd-IT-nQb" customClass="TitleView" customModule="SoundCloud" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="62"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="da1-k4-6qs">
+                                <rect key="frame" x="0.0" y="82" width="375" height="585"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="7jN-DY-Gaz" id="NJ9-Ub-Na4"/>
+                                    <outlet property="delegate" destination="7jN-DY-Gaz" id="emd-nJ-wBj"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="GKd-IT-nQb" firstAttribute="height" secondItem="o7C-j7-GB8" secondAttribute="height" multiplier="60/647" id="M36-BW-vQ1"/>
+                            <constraint firstItem="da1-k4-6qs" firstAttribute="leading" secondItem="U8b-Jp-B1O" secondAttribute="leading" id="Noz-JB-lbR"/>
+                            <constraint firstItem="GKd-IT-nQb" firstAttribute="leading" secondItem="U8b-Jp-B1O" secondAttribute="leading" id="OYG-oj-oFX"/>
+                            <constraint firstItem="da1-k4-6qs" firstAttribute="top" secondItem="GKd-IT-nQb" secondAttribute="bottom" id="OqS-bg-V81"/>
+                            <constraint firstItem="U8b-Jp-B1O" firstAttribute="bottom" secondItem="da1-k4-6qs" secondAttribute="bottom" id="T6A-er-YGh"/>
+                            <constraint firstItem="U8b-Jp-B1O" firstAttribute="trailing" secondItem="GKd-IT-nQb" secondAttribute="trailing" id="bso-eh-NJ7"/>
+                            <constraint firstItem="U8b-Jp-B1O" firstAttribute="trailing" secondItem="da1-k4-6qs" secondAttribute="trailing" id="fAG-vS-epR"/>
+                            <constraint firstItem="GKd-IT-nQb" firstAttribute="top" secondItem="U8b-Jp-B1O" secondAttribute="top" id="vpn-Mg-0M2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="U8b-Jp-B1O"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="da1-k4-6qs" id="eCq-AD-Kh6"/>
+                        <outlet property="titleView" destination="GKd-IT-nQb" id="2AL-n3-dBG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L6n-wU-1MG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="118" y="833"/>
+        </scene>
         <!--Search View Controller-->
         <scene sceneID="vNX-jF-VJA">
             <objects>
@@ -88,6 +131,7 @@
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="F9M-nX-uCc">
                                 <rect key="frame" x="0.0" y="20" width="375" height="60"/>
+                                <color key="barTintColor" red="1" green="0.69019607839999997" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="u1M-N8-ftL" id="zrh-Vs-UHz"/>
@@ -144,7 +188,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sEO-Va-igV">
                                 <rect key="frame" x="0.0" y="80" width="375" height="587"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NOv-MH-Lq3">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NOv-MH-Lq3">
                                         <rect key="frame" x="0.0" y="50" width="375" height="537"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <connections>
@@ -188,7 +232,7 @@
         <!--Playlist View Controller-->
         <scene sceneID="h7Z-GP-hsd">
             <objects>
-                <viewController id="d1M-EP-mEx" customClass="PlaylistViewController" customModule="SoundCloud" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlaylistViewController" id="d1M-EP-mEx" customClass="PlaylistViewController" customModule="SoundCloud" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6e5-F6-giO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -232,7 +276,7 @@
                                             <action selector="clickAddPlaylist:" destination="d1M-EP-mEx" eventType="touchUpInside" id="6iB-dF-Weg"/>
                                         </connections>
                                     </button>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LCf-HD-Q1l">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LCf-HD-Q1l">
                                         <rect key="frame" x="0.0" y="56" width="375" height="531"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
@@ -282,7 +326,7 @@
         <!--List Song View Controller-->
         <scene sceneID="ojd-Xf-PE3">
             <objects>
-                <viewController id="Sbv-FK-nlr" customClass="ListSongViewController" customModule="SoundCloud" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListSongViewController" id="Sbv-FK-nlr" customClass="ListSongViewController" customModule="SoundCloud" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YsY-dp-s4b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -291,7 +335,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="62"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mvh-RK-Stf">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mvh-RK-Stf">
                                 <rect key="frame" x="0.0" y="82" width="375" height="585"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>

@@ -70,6 +70,31 @@ class DatabaseManager: NSObject {
         }
     }
     
+    func checkExistTrackInPlaylist(idTrack: Int, idPlaylist: Int) -> Bool {
+        guard let context = context else {
+            return true
+        }
+        req = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Container")
+        req?.returnsObjectsAsFaults = false
+        guard let req = req else {
+            return true
+        }
+        do {
+            guard let result = try context.fetch(req) as? [NSManagedObject] else {
+                return true
+            }
+            for r in result {
+                if idTrack == r.value(forKey: "idTrack") as? Int ?? 0
+                    && idPlaylist == r.value(forKey: "idPlaylist") as? Int ?? 0 {
+                    return true
+                }
+            }
+            return false
+        } catch {
+            return true
+        }
+    }
+    
     func getNextIDForPlaylist() -> Int {
         guard let context = context else {
             return 0
@@ -80,12 +105,18 @@ class DatabaseManager: NSObject {
             return 0
         }
         do {
-            let result = try context.fetch(req)
-            if result.count > 0 {
-                guard let last = result.last as? NSManagedObject else {
+            let results = try context.fetch(req)
+            if results.count > 0 {
+                guard let results = results as? [NSManagedObject] else {
                     return 0
                 }
-                return last.value(forKey: "id") as? Int ?? 0 + 1
+                var max = 0
+                for result in results {
+                    if result.value(forKey: "id") as? Int ?? 0 > max {
+                        max = result.value(forKey: "id") as? Int ?? 0
+                    }
+                }
+                return max + 1
             } else {
                 return 0
             }
@@ -306,15 +337,84 @@ class DatabaseManager: NSObject {
         req.returnsObjectsAsFaults = false
         do {
             let results = try context.fetch(req)
-            for i in 0...results.count {
-                guard let result = results[i] as? NSManagedObject else {
+            for result in results {
+                guard let result = result as? NSManagedObject else {
                     return false
                 }
                 if result.value(forKey: "id") as? Int ?? 0 == idPlaylist {
                     result.setValue(name, forKey: "name")
                 }
             }
-            return true
+            do {
+                try context.save()
+                return true
+            } catch
+            {
+                return false
+            }
+        } catch {
+            return false
+        }
+    }
+    
+    func deletePlaylist(idPlaylist: Int) -> Bool {
+        guard let context = context else {
+            return false
+        }
+        req = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Playlist")
+        guard let req = req else {
+            return false
+        }
+        req.returnsObjectsAsFaults = false
+        do {
+            let results = try context.fetch(req)
+            for result in results {
+                guard let result = result as? NSManagedObject else {
+                    return false
+                }
+                if result.value(forKey: "id") as? Int ?? 0 == idPlaylist {
+                    context.delete(result)
+                }
+            }
+            do {
+                try context.save()
+                return true
+            } catch
+            {
+                return false
+            }
+        } catch {
+            return false
+        }
+    }
+    
+    func deleteTrackFromPlaylist(idTrack: Int, idPlaylist: Int) -> Bool {
+        guard let context = context else {
+            return false
+        }
+        req = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Container")
+        guard let req = req else {
+            return false
+        }
+        req.returnsObjectsAsFaults = false
+        do {
+            let results = try context.fetch(req)
+            for result in results {
+                guard let result = result as? NSManagedObject else {
+                    return false
+                }
+                if result.value(forKey: "idPlaylist") as? Int ?? 0 == idPlaylist
+                    && result.value(forKey: "idTrack") as? Int ?? 0 == idTrack {
+                    context.delete(result)
+                }
+            }
+            do {
+                try context.save()
+                return true
+            } catch
+            {
+                return false
+            }
         } catch {
             return false
         }

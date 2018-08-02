@@ -18,6 +18,10 @@ class TitleView: UIView, NibOwnerLoadable {
         self.loadNibContent()
     }
     
+    func setDelegateForButton(viewController: UIViewController) {
+        leftButton.delegate = viewController as? ImageButtonDelegate
+    }
+    
     func setTitle(title: String) {
         mainTitleLabel.text = title
     }

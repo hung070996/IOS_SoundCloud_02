@@ -29,8 +29,22 @@ class Networking {
         }
     }
     
-    static func getSearch(key: String, completion: @escaping (_ result: SearchResponse?, _ error: BaseError?) -> Void) {
-        let request = SearchRequest(key: key)
+    static func getGenreByType(type: GenreType, limit: Int, completion: @escaping (_ result: Genre?, _ error: BaseError?) -> Void) {
+        let request = GenreRequest(genre: type, limit: limit)
+        APIManager.shared.request(input: request) { (result: Genre?, error) in
+            guard let error = error else {
+                guard let result = result else {
+                    return
+                }
+                completion(result, nil)
+                return
+            }
+            completion(nil, error)
+        }
+    }
+    
+    static func getSearch(key: String, limit: Int, completion: @escaping (_ result: SearchResponse?, _ error: BaseError?) -> Void) {
+        let request = SearchRequest(key: key, limit: limit)
         APIManager.shared.request(input: request) { (result: SearchResponse?, error) in
             if let error = error {
                 completion(nil, error)

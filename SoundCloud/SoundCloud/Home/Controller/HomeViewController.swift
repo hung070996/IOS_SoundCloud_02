@@ -14,6 +14,8 @@ final class HomeViewController: UIViewController {
         static let title = "Home"
         static let numberOfCellCollectionInOneScreen = 3
         static let estimateRowHeight = 100
+        static let main = "Main"
+        static let listSongWithGenreViewController = "ListSongWithGenreViewController"
     }
     
     private var listGenre = [Genre]()
@@ -98,5 +100,18 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let track = listGenre[collectionView.tag].collection[indexPath.item]
         PlaySongManager.shared.temproraryTrack = track
         NotificationCenter.default.post(name: NSNotification.Name.init("PlaySong"), object: nil)
+    }
+}
+
+extension HomeViewController: HomeTableViewCellDelegate {
+    func clickTitle(cell: HomeTableViewCell) {
+        guard let index = tableView.indexPath(for: cell) else {
+            return
+        }
+        let storyboard = UIStoryboard(name: Constant.main, bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: Constant.listSongWithGenreViewController) as? ListSongWithGenreViewController {
+            vc.genre = listGenre[index.row]
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
