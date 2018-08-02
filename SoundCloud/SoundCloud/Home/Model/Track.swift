@@ -79,4 +79,6 @@ class Track: Mappable {
         waveformUrl <- map["track.waveform_url"]
         artist <- map["track.publisher_metadata.artist"]
     }
+    
+    func getID() -> Int { return self.id }
 }

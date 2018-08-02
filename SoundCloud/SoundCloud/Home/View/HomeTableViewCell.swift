@@ -9,6 +9,10 @@
 import UIKit
 import Reusable
 
+protocol HomeTableViewCellDelegate: class {
+    func clickTitle(cell: HomeTableViewCell)
+}
+
 final class HomeTableViewCell: UITableViewCell, NibReusable {
     private struct Identifier {
         static let homeCollectionViewCell = "HomeCollectionViewCell"
@@ -17,6 +21,8 @@ final class HomeTableViewCell: UITableViewCell, NibReusable {
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var seeAllButton: UIButton!
     @IBOutlet private var collectionView: UICollectionView!
+    
+    weak var delegate: HomeTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,5 +34,10 @@ final class HomeTableViewCell: UITableViewCell, NibReusable {
         collectionView.register(cellType: HomeCollectionViewCell.self)
         collectionView.tag = tag
         titleLabel.text = genre.genreType.getNameType
+        delegate = viewController as? HomeTableViewCellDelegate
+    }
+    
+    @IBAction func clickTitle(_ sender: UIButton) {
+        delegate?.clickTitle(cell: self)
     }
 }

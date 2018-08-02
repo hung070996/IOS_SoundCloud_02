@@ -48,6 +48,13 @@ class ResultSearchCell: UITableViewCell, NibReusable {
         imageSong.kf.setImage(with: url, placeholder: placeholder)
     }
     
+    func changeToListSongCell() {
+        downloadButton.isHidden = true
+        progress.isHidden = true
+        addPlaylistButton.muttating(type: .delete)
+        addPlaylistButton.setTintColorOfImage(color: .black)
+    }
+    
     func setDownloadedButton() {
         downloadButton.muttating(type: .downloaded)
         downloadButton.setTintColorOfImage(color: .black)

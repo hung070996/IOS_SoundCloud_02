@@ -44,7 +44,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="167.5" height="35"/>
                                             <color key="backgroundColor" red="1" green="0.69019607839999997" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="17"/>
-                                            <state key="normal" title="EDM Music">
+                                            <state key="normal" title="Love">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <connections>
@@ -55,7 +55,7 @@
                                             <rect key="frame" x="0.0" y="55" width="167.5" height="35"/>
                                             <color key="backgroundColor" red="1" green="0.69019607839999997" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="17"/>
-                                            <state key="normal" title="Pop Music">
+                                            <state key="normal" title="Sad">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <connections>
@@ -71,7 +71,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="167.5" height="35"/>
                                             <color key="backgroundColor" red="1" green="0.69019607839999997" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="17"/>
-                                            <state key="normal" title="New 2018">
+                                            <state key="normal" title="Rain">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <connections>
@@ -82,7 +82,7 @@
                                             <rect key="frame" x="0.0" y="55" width="167.5" height="35"/>
                                             <color key="backgroundColor" red="1" green="0.69019607839999997" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="17"/>
-                                            <state key="normal" title="Rock">
+                                            <state key="normal" title="Miss">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <connections>
@@ -113,7 +113,7 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Swx-9E-X0B">
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Swx-9E-X0B">
                             <rect key="frame" x="0.0" y="42.5" width="375" height="362.5"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </tableView>

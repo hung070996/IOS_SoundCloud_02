@@ -119,6 +119,16 @@ class Genre: Mappable {
         }
     }
     
+    init() {}
+    
+    init(type: GenreType) {
+        self.genreType = type
+    }
+    
+    func setCollection(collection: [Track]) {
+        self.collection = collection
+    }
+    
     required init?(map: Map) {
         mapping(map: map)
     }

@@ -28,6 +28,12 @@ class GenreRequest: BaseRequest {
         self.genre = DefaultValue.defaultGenre
     }
     
+    convenience init(genre: GenreType, limit: Int) {
+        self.init()
+        self.genre = genre
+        self.limit = limit
+    }
+    
     convenience init(genre: GenreType) {
         self.init()
         self.genre = genre

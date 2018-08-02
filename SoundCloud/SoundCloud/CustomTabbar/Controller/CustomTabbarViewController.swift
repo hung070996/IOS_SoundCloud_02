@@ -176,6 +176,7 @@ extension CustomTabbarViewController: ImageButtonDelegate {
         case .library:
             displayVC(type: .library)
             setHighlightForCurrentButton(type: type)
+            NotificationCenter.default.post(name: NSNotification.Name.init("refresh"), object: nil)
             
         case .play:
             playCurrentSong()

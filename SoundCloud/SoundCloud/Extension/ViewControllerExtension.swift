@@ -32,4 +32,24 @@ extension UIViewController {
         alert.addAction(UIAlertAction(title: Constant.ok, style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func showConfirmAlert(title: String, message: String, actions: [UIAlertAction]) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        for action in actions { alert.addAction(action) }
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func showAlertWithTextfield(title: String, message: String, actions: [UIAlertAction]) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addTextField(configurationHandler: nil)
+        for action in actions {
+            alert.addAction(action)
+        }
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func makeToastWindow(title: String) {
+        let window = UIApplication.shared.keyWindow
+        window?.rootViewController?.view.makeToast(title)
+    }
 }
