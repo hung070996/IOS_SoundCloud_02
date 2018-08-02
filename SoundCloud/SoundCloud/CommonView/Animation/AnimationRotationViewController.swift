@@ -10,22 +10,29 @@ import Kingfisher
 
 class AnimationRotationViewController: UIViewController {
     @IBOutlet private weak var imageViewDisplay: UIImageView!
+    var isAnimating = false
+    
+    private struct ConstantData {
+        static let holderImage = #imageLiteral(resourceName: "Icon_Playlist_Holder")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     func setImageView(urlString: String) {
-        let url = URL(string: urlString)
-        let placeHolder = #imageLiteral(resourceName: "Icon_Playlist_Holder")
-        imageViewDisplay.kf.setImage(with: url, placeholder: placeHolder)
+        imageViewDisplay.layer.cornerRadius = imageViewDisplay.bounds.width / 2
+        imageViewDisplay.layer.masksToBounds = true
+        imageViewDisplay.setImageForUrl(urlString: urlString, imageHolder: ConstantData.holderImage)
     }
     
     func startAnimation() {
+        isAnimating = true
         imageViewDisplay.rotate360Degrees()
     }
     
     func stopAnimation() {
+        isAnimating = false
         imageViewDisplay.layer.removeAllAnimations()
     }
 }

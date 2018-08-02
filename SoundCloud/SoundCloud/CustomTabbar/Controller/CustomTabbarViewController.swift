@@ -38,6 +38,7 @@ class CustomTabbarViewController: UIViewController {
         setTabbarDisplay()
         setDelegate()
         NotificationCenter.default.addObserver(self, selector: #selector(requestPlaySong), name: NSNotification.Name.init("PlaySong"), object: nil)
+        viewCurrentSongPlaying.isHidden = true
     }
     
     private func setTabbarDisplay() {
@@ -55,13 +56,15 @@ class CustomTabbarViewController: UIViewController {
     }
     
     private func setUpViewController() {
-        guard let homepageVC = Utils.shared.getViewControllerFrom(storyboard: .main, identifierType: .homepage) as? HomeViewController else { return }
-        guard let searchVC = Utils.shared.getViewControllerFrom(storyboard: .main, identifierType: .search) as? SearchViewController  else { return }
-        guard let libraryVC = Utils.shared.getViewControllerFrom(storyboard: .main, identifierType: .library) as? LibraryViewController  else { return }
-        guard let playVC = Utils.shared.getViewControllerFrom(storyboard: .extra, identifierType: .play) as? PlaySongViewController  else { return }
+        guard let homeNavi = Utils.shared.getViewControllerFrom(storyboard: .main, identifierType: .homeNavigation) as? UINavigationController,
+            let libraryNavi = Utils.shared.getViewControllerFrom(storyboard: .main, identifierType: .libraryNavigation) as? UINavigationController,
+            let searchVC = Utils.shared.getViewControllerFrom(storyboard: .main, identifierType: .search) as? SearchViewController,
+            let playVC = Utils.shared.getViewControllerFrom(storyboard: .extra, identifierType: .play) as? PlaySongViewController else {
+            return
+        }
         playVC.delegate = self
         self.delegate = playVC
-        arrViewController = [homepageVC, searchVC, libraryVC, playVC]
+        arrViewController = [homeNavi, searchVC, libraryNavi, playVC]
         displayVC(type: .homepage)
         previousViewControllerDisplay = nil
         playContentView.isHidden = true
@@ -103,10 +106,30 @@ class CustomTabbarViewController: UIViewController {
     
     func playCurrentSong() {
         PlaySongManager.shared.play(playButton: viewCurrentSongPlaying.getPlayButton())
+        viewCurrentSongPlaying.startAnimation()
     }
     
     func pauseCurrentSong() {
         PlaySongManager.shared.pause(playButton: viewCurrentSongPlaying.getPlayButton())
+        viewCurrentSongPlaying.stopAnimation()
+    }
+    
+    func updateViewCurrentSongPlaying() {
+        guard let track = PlaySongManager.shared.currentTrack else {
+            return
+        }
+        viewCurrentSongPlaying.fillData(track: track)
+        PlaySongManager.shared.isPlaying ? startAnimationOfViewSongCurrentPlaying() : stopAnimationOfViewSongCurrentPlaying()
+    }
+    
+    private func startAnimationOfViewSongCurrentPlaying() {
+        viewCurrentSongPlaying.startAnimation()
+        viewCurrentSongPlaying.getPlayButton().muttating(type: .pause)
+    }
+    
+    private func stopAnimationOfViewSongCurrentPlaying() {
+        viewCurrentSongPlaying.stopAnimation()
+        viewCurrentSongPlaying.getPlayButton().muttating(type: .play)
     }
     
     deinit {
@@ -121,15 +144,26 @@ class CustomTabbarViewController: UIViewController {
     }
 }
 
+extension CustomTabbarViewController: CurrentSongPlayingDelegate {
+    func displayPlaySongViewController() {
+        displayVC(type: .play)
+    }
+}
+
 extension CustomTabbarViewController: PlaySongProtocol {
     func dismissToParent() {
         self.playContentView.isHidden = true
+        self.viewCurrentSongPlaying.isHidden = false
         removeVC(vc: arrViewController[ViewControllerContentType.play.rawValue])
+        updateViewCurrentSongPlaying()
     }
 }
 
 extension CustomTabbarViewController: ImageButtonDelegate {
     func handleImageButtonClicked(type: ImageButtonType) {
+        guard let playVC = arrViewController[ViewControllerContentType.play.rawValue] as? PlaySongViewController else {
+            return
+        }
         switch type {
         case .homePage:
             displayVC(type: .homepage)
@@ -148,6 +182,14 @@ extension CustomTabbarViewController: ImageButtonDelegate {
             
         case .pause:
             pauseCurrentSong()
+            
+        case .playNext:
+            PlaySongManager.shared.playNext(handleVC: playVC)
+            updateViewCurrentSongPlaying()
+            
+        case .playPrevious:
+            PlaySongManager.shared.playPrevious(handleVC: playVC)
+            updateViewCurrentSongPlaying()
             
         default:
             fatalError()

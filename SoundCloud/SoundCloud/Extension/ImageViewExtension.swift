@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 extension UIImageView {
     func setCircleBorder() {
@@ -24,5 +25,11 @@ extension UIImageView {
         rotateAnimation.duration = duration
         rotateAnimation.repeatCount = Float.infinity
         layer.add(rotateAnimation, forKey: nil)
+    }
+    
+    func setImageForUrl(urlString: String, imageHolder: UIImage? = nil) {
+        if let url = URL(string: urlString) {
+            self.kf.setImage(with: url, placeholder: imageHolder, options: nil, progressBlock: nil, completionHandler: nil)
+        }
     }
 }

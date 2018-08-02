@@ -17,6 +17,7 @@
                 <outlet property="ibPlay" destination="i5E-0Q-AvI" id="e6v-6m-CBP"/>
                 <outlet property="ibPlayNext" destination="W2V-mQ-9Hm" id="fU6-7h-DVQ"/>
                 <outlet property="ibPlayPrevious" destination="k09-d5-hWt" id="3oC-Rd-UI6"/>
+                <outlet property="imgViewDisplay" destination="A7l-UV-mep" id="iwY-HE-5FQ"/>
                 <outlet property="lblNameOfSong" destination="16S-fM-59H" id="g1D-8z-ySk"/>
                 <outlet property="lblSinger" destination="Koe-z3-Ix9" id="9rt-e2-HHD"/>
                 <outlet property="viewImgaeHolder" destination="vL6-yH-PVX" id="j6p-dU-KuE"/>
@@ -29,9 +30,18 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vL6-yH-PVX">
                     <rect key="frame" x="10" y="7" width="69" height="69"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A7l-UV-mep">
+                            <rect key="frame" x="0.0" y="0.0" width="69" height="69"/>
+                        </imageView>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="A7l-UV-mep" firstAttribute="width" secondItem="vL6-yH-PVX" secondAttribute="width" id="7zb-Om-jYw"/>
+                        <constraint firstItem="A7l-UV-mep" firstAttribute="height" secondItem="vL6-yH-PVX" secondAttribute="height" id="97d-fM-JZN"/>
+                        <constraint firstItem="A7l-UV-mep" firstAttribute="centerX" secondItem="vL6-yH-PVX" secondAttribute="centerX" id="IYW-xQ-jbn"/>
                         <constraint firstAttribute="width" secondItem="vL6-yH-PVX" secondAttribute="height" multiplier="1:1" id="SoB-df-avA"/>
+                        <constraint firstItem="A7l-UV-mep" firstAttribute="centerY" secondItem="vL6-yH-PVX" secondAttribute="centerY" id="toR-AZ-lq8"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xfg-z7-7UV">
@@ -83,17 +93,27 @@
                         </label>
                     </subviews>
                 </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKU-Vg-rPh">
+                    <rect key="frame" x="0.0" y="0.0" width="346.5" height="83"/>
+                    <connections>
+                        <action selector="buttonBackgourndClicked:" destination="-1" eventType="touchUpInside" id="s2H-mH-4SH"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="Xfg-z7-7UV" firstAttribute="leading" secondItem="pRP-Z3-Paq" secondAttribute="trailing" constant="10" id="0D9-q4-KU5"/>
                 <constraint firstItem="vL6-yH-PVX" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="5/6" id="1SA-4i-Zya"/>
                 <constraint firstItem="pRP-Z3-Paq" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="AXx-GS-zZS"/>
                 <constraint firstItem="pRP-Z3-Paq" firstAttribute="leading" secondItem="vL6-yH-PVX" secondAttribute="trailing" constant="10" id="IdC-i1-kkF"/>
+                <constraint firstItem="HKU-Vg-rPh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="JFc-fR-zMQ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Xfg-z7-7UV" secondAttribute="trailing" id="Tyb-ee-9xC"/>
+                <constraint firstItem="HKU-Vg-rPh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Wan-jM-2mj"/>
+                <constraint firstItem="Xfg-z7-7UV" firstAttribute="leading" secondItem="HKU-Vg-rPh" secondAttribute="trailing" id="aYu-83-BBC"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Xfg-z7-7UV" secondAttribute="bottom" id="edy-0p-PrE"/>
                 <constraint firstItem="Xfg-z7-7UV" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="hV3-8m-dGh"/>
                 <constraint firstItem="vL6-yH-PVX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="kTZ-ot-7Sl"/>
                 <constraint firstItem="Xfg-z7-7UV" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="35/100" id="m4A-JJ-aRd"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="HKU-Vg-rPh" secondAttribute="bottom" id="rvG-Ds-dU5"/>
                 <constraint firstItem="vL6-yH-PVX" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="uSh-qG-0o4"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
