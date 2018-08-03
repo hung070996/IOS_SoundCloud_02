@@ -18,6 +18,7 @@ class ListSongViewController: UIViewController {
         static let no = "No"
         static let confirm = "Confirm"
         static let confirmDelete = "Do you want to remove this track from playlist?"
+        static let refresh = "refresh"
     }
     
     var playlist = Playlist()
@@ -34,7 +35,7 @@ class ListSongViewController: UIViewController {
     }
     
     func addObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name.init("refresh"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name.init(Constant.refresh), object: nil)
     }
     
     @objc func getData() {
@@ -56,6 +57,10 @@ class ListSongViewController: UIViewController {
         titleView.setTitle(title: playlist.name)
         titleView.setButton(type: .back)
         titleView.setDelegateForButton(viewController: self)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -81,8 +86,7 @@ extension ListSongViewController: ResultSearchCellDelegate {
         if type == .delete {
             let actionYes = UIAlertAction(title: Constant.yes, style: .default) { (action) in
                 if DatabaseManager.shared.deleteTrackFromPlaylist(idTrack: track.getID(), idPlaylist: self.playlist.getID()) {
-                    self.playlist.listTrack.remove(at: index.row)
-                    self.tableView.reloadData()
+                    NotificationCenter.default.post(name: NSNotification.Name.init(Constant.refresh), object: nil)
                     self.view.makeToast(Constant.success)
                 } else {
                     self.view.makeToast(Constant.failure)

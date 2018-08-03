@@ -29,6 +29,7 @@ class PlaylistViewController: UIViewController {
         static let confirmDelete = "Do you want to delete this playlist?"
         static let main = "Main"
         static let listSongViewController = "ListSongViewController"
+        static let refresh = "refresh"
     }
 
     @IBOutlet private var titleView: TitleView!
@@ -46,7 +47,7 @@ class PlaylistViewController: UIViewController {
     }
     
     func addObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name.init("refresh"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name.init(Constant.refresh), object: nil)
     }
     
     @objc func getData() {
@@ -62,8 +63,12 @@ class PlaylistViewController: UIViewController {
     
     func setTitleView() {
         titleView.setTitle(title: Constant.title)
-        titleView.setButton(type: .back)
+        trackWantToAdd != nil ? titleView.setButton(type: .exit) : titleView.setButton(type: .back)
         titleView.setDelegateForButton(viewController: self)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     @IBAction func clickAddPlaylist(_ sender: Any) {
@@ -78,6 +83,7 @@ class PlaylistViewController: UIViewController {
                         self.view.makeToast(Constant.success)
                         self.getData()
                         self.tableView.reloadData()
+                        NotificationCenter.default.post(name: NSNotification.Name.init(Constant.refresh), object: nil)
                     } else {
                         self.view.makeToast(Constant.failure)
                     }
@@ -136,6 +142,7 @@ extension PlaylistViewController: PlaylistCellDelegate {
                         self.showErrorAlert(message: Constant.alreadyHave)
                     } else {
                         if DatabaseManager.shared.renamePlaylist(idPlaylist: playlist.getID(), name: text) {
+                            NotificationCenter.default.post(name: NSNotification.Name.init(Constant.refresh), object: nil)
                             self.view.makeToast(Constant.success)
                             self.getData()
                             self.tableView.reloadData()
@@ -150,6 +157,7 @@ extension PlaylistViewController: PlaylistCellDelegate {
         case .delete:
             let actionYes = UIAlertAction(title: Constant.yes, style: .default) { (action) in
                 if DatabaseManager.shared.deletePlaylist(idPlaylist: playlist.getID()) {
+                    NotificationCenter.default.post(name: NSNotification.Name.init(Constant.refresh), object: nil)
                     self.view.makeToast(Constant.success)
                     self.getData()
                     self.tableView.reloadData()
@@ -167,8 +175,13 @@ extension PlaylistViewController: PlaylistCellDelegate {
 
 extension PlaylistViewController: ImageButtonDelegate {
     func handleImageButtonClicked(type: ImageButtonType) {
-        if type == .back {
+        switch type {
+        case .back:
             navigationController?.popViewController(animated: true)
+        case .exit:
+            dismiss(animated: true, completion: nil)
+        default:
+            break
         }
     }
 }

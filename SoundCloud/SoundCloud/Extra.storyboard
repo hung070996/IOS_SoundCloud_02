@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Poo-hd-DZo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Poo-hd-DZo">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -20,6 +20,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NGZ-39-fl1">
+                                <rect key="frame" x="0.0" y="20" width="375" height="585"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l3W-fp-gaz" customClass="CurrentSongPlaying" customModule="SoundCloud" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="605" width="375" height="62"/>
+                                <color key="backgroundColor" red="1" green="0.72941176470000002" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dGV-En-o6m">
                                 <rect key="frame" x="0.0" y="605" width="375" height="62"/>
                                 <subviews>
@@ -35,30 +43,32 @@
                                         <rect key="frame" x="250" y="0.0" width="125" height="62"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dtu-AI-m3J">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.5"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="0.5" id="ojE-A6-ndJ"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="Dtu-AI-m3J" firstAttribute="top" secondItem="dGV-En-o6m" secondAttribute="top" id="2gV-B1-doL"/>
                                     <constraint firstItem="iPM-jp-UZJ" firstAttribute="centerY" secondItem="dGV-En-o6m" secondAttribute="centerY" id="5Kc-Na-YJB"/>
                                     <constraint firstItem="iPM-jp-UZJ" firstAttribute="width" secondItem="LWi-5W-Wt6" secondAttribute="width" id="6cE-CZ-2va"/>
                                     <constraint firstItem="LWi-5W-Wt6" firstAttribute="centerY" secondItem="dGV-En-o6m" secondAttribute="centerY" id="9R3-Ge-1gP"/>
                                     <constraint firstItem="LWi-5W-Wt6" firstAttribute="leading" secondItem="dGV-En-o6m" secondAttribute="leading" id="BkT-W6-WSE"/>
                                     <constraint firstItem="iPM-jp-UZJ" firstAttribute="top" secondItem="dGV-En-o6m" secondAttribute="top" id="FC1-fi-YgB"/>
+                                    <constraint firstItem="Dtu-AI-m3J" firstAttribute="width" secondItem="dGV-En-o6m" secondAttribute="width" id="JbV-ff-DV2"/>
                                     <constraint firstAttribute="trailing" secondItem="LXk-zM-NTV" secondAttribute="trailing" id="LLL-2i-rmH"/>
                                     <constraint firstItem="LXk-zM-NTV" firstAttribute="width" secondItem="iPM-jp-UZJ" secondAttribute="width" id="Wza-xG-K4c"/>
                                     <constraint firstItem="LXk-zM-NTV" firstAttribute="leading" secondItem="iPM-jp-UZJ" secondAttribute="trailing" id="X5J-oX-cWH"/>
                                     <constraint firstItem="LXk-zM-NTV" firstAttribute="centerY" secondItem="dGV-En-o6m" secondAttribute="centerY" id="fNT-lh-L8W"/>
+                                    <constraint firstItem="Dtu-AI-m3J" firstAttribute="centerX" secondItem="dGV-En-o6m" secondAttribute="centerX" id="gXD-I1-J6p"/>
                                     <constraint firstItem="iPM-jp-UZJ" firstAttribute="leading" secondItem="LWi-5W-Wt6" secondAttribute="trailing" id="hRG-qU-kAA"/>
                                     <constraint firstItem="LXk-zM-NTV" firstAttribute="top" secondItem="dGV-En-o6m" secondAttribute="top" id="igB-gm-3EU"/>
                                     <constraint firstItem="LWi-5W-Wt6" firstAttribute="top" secondItem="dGV-En-o6m" secondAttribute="top" id="zxa-sA-Q8l"/>
                                 </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NGZ-39-fl1">
-                                <rect key="frame" x="0.0" y="20" width="375" height="585"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l3W-fp-gaz" customClass="CurrentSongPlaying" customModule="SoundCloud" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="543" width="375" height="62"/>
-                                <color key="backgroundColor" red="1" green="0.72941176470000002" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qoP-gR-i7g">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
@@ -73,7 +83,7 @@
                             <constraint firstItem="dGV-En-o6m" firstAttribute="leading" secondItem="uJj-gq-O7c" secondAttribute="leading" id="Gm9-mN-AHJ"/>
                             <constraint firstAttribute="trailing" secondItem="dGV-En-o6m" secondAttribute="trailing" id="JqG-kg-4GM"/>
                             <constraint firstItem="TCb-4w-xX6" firstAttribute="bottom" secondItem="qoP-gR-i7g" secondAttribute="bottom" id="QIa-L7-SKA"/>
-                            <constraint firstItem="dGV-En-o6m" firstAttribute="top" secondItem="NGZ-39-fl1" secondAttribute="bottom" id="QME-IC-gdt"/>
+                            <constraint firstItem="l3W-fp-gaz" firstAttribute="top" secondItem="NGZ-39-fl1" secondAttribute="bottom" id="TQz-Rj-7Pe"/>
                             <constraint firstItem="NGZ-39-fl1" firstAttribute="top" secondItem="TCb-4w-xX6" secondAttribute="top" id="Vxb-An-GNS"/>
                             <constraint firstItem="qoP-gR-i7g" firstAttribute="leading" secondItem="TCb-4w-xX6" secondAttribute="leading" id="aFZ-0R-w9W"/>
                             <constraint firstItem="TCb-4w-xX6" firstAttribute="trailing" secondItem="qoP-gR-i7g" secondAttribute="trailing" id="anP-rO-UJp"/>
@@ -82,13 +92,14 @@
                             <constraint firstItem="qoP-gR-i7g" firstAttribute="top" secondItem="TCb-4w-xX6" secondAttribute="top" id="qQn-KW-AVV"/>
                             <constraint firstItem="NGZ-39-fl1" firstAttribute="leading" secondItem="TCb-4w-xX6" secondAttribute="leading" id="vnf-Yt-5Of"/>
                             <constraint firstItem="dGV-En-o6m" firstAttribute="height" secondItem="uJj-gq-O7c" secondAttribute="height" multiplier="60/647" id="wZX-h7-gwf"/>
-                            <constraint firstItem="dGV-En-o6m" firstAttribute="top" secondItem="l3W-fp-gaz" secondAttribute="bottom" id="y7i-sj-2jR"/>
+                            <constraint firstItem="dGV-En-o6m" firstAttribute="bottom" secondItem="l3W-fp-gaz" secondAttribute="bottom" id="y7i-sj-2jR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TCb-4w-xX6"/>
                     </view>
                     <connections>
                         <outlet property="contentView" destination="NGZ-39-fl1" id="jq7-S8-EBl"/>
                         <outlet property="playContentView" destination="qoP-gR-i7g" id="NFJ-wu-GXg"/>
+                        <outlet property="spaceCurrentSongToBottom" destination="y7i-sj-2jR" id="0nu-2n-ii9"/>
                         <outlet property="tabbarItemHome" destination="LWi-5W-Wt6" id="bdX-wn-D5k"/>
                         <outlet property="tabbarItemLibrary" destination="LXk-zM-NTV" id="ksi-p1-fqT"/>
                         <outlet property="tabbarItemSearch" destination="iPM-jp-UZJ" id="RYI-hW-PUn"/>

@@ -17,6 +17,7 @@ class LibraryViewController: UIViewController {
         static let main = "Main"
         static let listSongViewController = "ListSongViewController"
         static let playlistViewController = "PlaylistViewController"
+        static let refresh = "refresh"
     }
     
     private var listPlaylist = [Playlist]()
@@ -33,7 +34,7 @@ class LibraryViewController: UIViewController {
     }
     
     func addObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name.init("refresh"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name.init(Constant.refresh), object: nil)
     }
     
     @objc func getData() {
@@ -48,6 +49,10 @@ class LibraryViewController: UIViewController {
     func setTitleView() {
         titleView.setTitle(title: Constant.title)
         titleView.setShowLeftButton(isShow: false)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

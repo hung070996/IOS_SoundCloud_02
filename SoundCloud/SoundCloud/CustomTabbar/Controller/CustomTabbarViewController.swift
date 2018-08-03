@@ -21,6 +21,11 @@ enum ViewControllerContentType: Int {
 }
 
 class CustomTabbarViewController: UIViewController {
+    private struct Constant {
+        static let refresh = "refresh"
+    }
+    
+    @IBOutlet private var spaceCurrentSongToBottom: NSLayoutConstraint!
     @IBOutlet private weak var playContentView: UIView!
     @IBOutlet private weak var contentView: UIView!
     @IBOutlet private weak var viewCurrentSongPlaying: CurrentSongPlaying!
@@ -38,7 +43,6 @@ class CustomTabbarViewController: UIViewController {
         setTabbarDisplay()
         setDelegate()
         NotificationCenter.default.addObserver(self, selector: #selector(requestPlaySong), name: NSNotification.Name.init("PlaySong"), object: nil)
-        viewCurrentSongPlaying.isHidden = true
     }
     
     private func setTabbarDisplay() {
@@ -153,7 +157,8 @@ extension CustomTabbarViewController: CurrentSongPlayingDelegate {
 extension CustomTabbarViewController: PlaySongProtocol {
     func dismissToParent() {
         self.playContentView.isHidden = true
-        self.viewCurrentSongPlaying.isHidden = false
+        spaceCurrentSongToBottom.constant = viewCurrentSongPlaying.frame.size.height
+        viewCurrentSongPlaying.getShadow()
         removeVC(vc: arrViewController[ViewControllerContentType.play.rawValue])
         updateViewCurrentSongPlaying()
     }
@@ -176,7 +181,7 @@ extension CustomTabbarViewController: ImageButtonDelegate {
         case .library:
             displayVC(type: .library)
             setHighlightForCurrentButton(type: type)
-            NotificationCenter.default.post(name: NSNotification.Name.init("refresh"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name.init(Constant.refresh), object: nil)
             
         case .play:
             playCurrentSong()

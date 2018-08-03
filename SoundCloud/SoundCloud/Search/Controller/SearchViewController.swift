@@ -31,10 +31,16 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        customSearchbar()
         getData()
         resultSearchView.setContentTableview(viewController: self)
         suggestionSearchView.setContentView(viewController: self)
         suggestionSearchView.delegate = self
+    }
+    
+    func customSearchbar() {
+        searchBar.layer.borderColor = Utils.shared.getBaseColor().cgColor
+        searchBar.layer.borderWidth = 1
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
